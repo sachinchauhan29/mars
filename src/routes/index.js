@@ -33,7 +33,7 @@ const router = express.Router();
 const routes = [
     {
         path: '/',
-        route: accountRoutes
+        route: dashboardRoute
     },
     {
         path: '/account',
