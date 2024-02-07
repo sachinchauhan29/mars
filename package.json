@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./index.js --exec babel-node -e js",
-    "build": "mkdir dist && babel src -s -d dist"
+    "build": "mkdir public && babel src -s -d public"
   },
   "keywords": [],
   "author": "",
