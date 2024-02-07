@@ -1,0 +1,969 @@
+<%- include("../shared/header"); %>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <!-- <div class="page-title-icon">
+                    <i class=" metismenu-icon  fas fa-clone icon-gradient bg-mean-fruit">
+                    </i>
+                </div> -->
+                <div>
+                    <b> Data Whitelisting</b>
+                </div>
+            </div>
+            <div>
+                <div class="mr-2">
+                    <button type="button" class="btn btn-shadow custom-button bg-mean-fruit  dt-buttons btn-lg"
+                        data-toggle="modal" data-target="#myModal9"><i class='fas fa-history '></i><b>Upload
+                            History</b></button>
+
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal10"
+                        class="btn btn-shadow  bg-mean-fruit custom-button  dt-buttons btn-lg"><i
+                            class='fas fa-chevron-circle-up'></i><b>Upload
+                            Data</b></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 mx-auto">
+            <div class="mb-3 ">
+                <div class="card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 pr-5 col-12 mt-3 d-flex">
+
+                                <div class="mr-2">
+
+                                    <div class="modal" id="myModal9">
+                                        <div class="modal-dialog model-width  " style="margin-left: -70px;">
+                                            <div class="modal-content" style=" width: 850px !important;">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    UPLOAD HISTORY
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="modal-body text-center" style="height: 400px;
+                                                        overflow-x: auto;">
+                                                    <table class=" upload-table border ">
+                                                        <thead>
+                                                            <tr class=" bg-secondary text-white">
+                                                                <th class="border pt-2 pb-2 p-1">
+                                                                    UPLOADED DATE &amp; TIME</th>
+                                                                <th class="border pt-2 pb-2 p-1">
+                                                                    TOTAL RECORDS</th>
+                                                                <th class="border pt-2 pb-2 p-1">
+                                                                    INCORRECT RECORDS
+                                                                </th>
+                                                                <th class="border pt-2 pb-2 p-1">
+                                                                    SUCCESS RECORDS
+                                                                </th>
+                                                                <th class="border pt-2 pb-2 p-1 ">
+                                                                    STATUS</th>
+                                                                <th class="border pt-2 pb-2 p-1">
+                                                                    UPLOAD TYPE</th>
+                                                                <th class="border pt-2 pb-2 p-1 ">
+                                                                    ACTION</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <% uploadDataArray.forEach((data)=> { %>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <% const originalDate=new
+                                                                            Date(data.insert_datetime); %>
+                                                                            <%= originalDate.toLocaleString('en-US', {
+                                                                                timeZone: 'Asia/Kolkata' ,
+                                                                                year: 'numeric' , month: '2-digit' ,
+                                                                                day: '2-digit' , hour: '2-digit' ,
+                                                                                minute: '2-digit' , second: '2-digit' ,
+                                                                                hour12: true }).replace(',', '' ) %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.total_counts %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.failure_counts %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.success_counts %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.process_status %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= 'EDIT' %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="Download"
+                                                                            href="<%= data.updated_file_name %>"
+                                                                            download>Download</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <% }); %>
+                                                    </table>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger custom-btn"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mr-2">
+
+                                    <div class="modal modal-top" id="myModal10" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel6">
+                                                        UPLOAD
+                                                        DATA</h5>
+
+                                                    <button type="button" class="close"
+                                                        data-bs-dismiss="modal">&times;</button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="modal-body text-center" style="height: 400px;
+                                                        overflow-x: auto;">
+                                                    <form class="form-container"
+                                                        action="./data-whitelisting/upload-data" method="post"
+                                                        enctype="multipart/form-data" onsubmit="setAction()">
+
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-6 text-center">
+                                                                    <input type="radio" id="upload-data" name="action"
+                                                                        value="upload-data" checked>
+                                                                    &nbsp; <label for="upload-data">Update</label>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <input type="radio" id="delete-awsm" name="action"
+                                                                        value="delete-awsm">
+                                                                    &nbsp; <label for="delete-awsm">Delete AWSM</label>
+                                                                </div>
+                                                                <div class="col-12 mx-auto">
+                                                                    <div class="upload-files-container">
+                                                                        <div class="row">
+                                                                            <div>
+                                                                                <div class="drag-file-area">
+                                                                                    <!-- Your file input -->
+                                                                                    <input
+                                                                                        style="width: 100%; height: 134px; position: inherit;"
+                                                                                        id="files" type="file"
+                                                                                        name="file"
+                                                                                        class="default-file-input browsefiles"
+                                                                                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                                                                    <br>
+                                                                                </div>
+                                                                            </div>
+                                                                            <br>
+                                                                            <span class="mr-3" id="selectedFileName">No
+                                                                                file selected</span>
+                                                                            <br>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div>
+                                                                            Upload .csv files only <br>
+                                                                            <a href="./data-whitelisting/download-sample"
+                                                                                class="browse-files-text">Download
+                                                                                Sample Report</a>
+                                                                        </div>
+                                                                        <div class="text-center w-100">
+                                                                            <button type="submit"
+                                                                                class="upload-button custom-btn">Submit</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                            function setAction() {
+                                                                const action = document.querySelector('input[name="action"]:checked').value;
+                                                                document.forms[0].action = `./data-whitelisting/upload-data?action=${action}`;
+                                                            }
+                                                        </script>
+                                                    </form>
+
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger custom-btn"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-lg-4 col-12 text-right mt-3">
+                                <button id="btnExport" class="btn  btn-outline-alternate custom-button  mr-3"><i
+                                        class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download</button>
+                                <button class="btn-shadow  btn btn-primary custom-btn  btn-lg" data-toggle="collapse"
+                                    data-target="#demo"><i class='fas fa-filter mr-2'></i>Filter</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+
+                        <div id="demo" class="collapse">
+                            <form action="./data-whitelisting">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label for="ASE CODE" class="mr-sm-2">SO CODE
+                                        </label>
+                                        <input type="text" class="form-control" id="ase_code" placeholder="ase_code"
+                                            name="ase_code" value="<%=QueryData.ase_code %>">
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="ASE NAME" class="mr-sm-2">SO NAME</label>
+                                        <input type="text" class="form-control" id="ase_name" placeholder="ase_name"
+                                            name="ase_name" value="<%=QueryData.ase_name %>">
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="AW CODE" class="mr-sm-2">DISTRIBUTOR CODE</label>
+                                        <input type="text" class="form-control" id="aw_code" placeholder="aw_code"
+                                            name="aw_code" value="<%=QueryData.aw_code %>">
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="SALESMAN NAME" class="mr-sm-2">DSR NAME</label>
+                                        <input type="text" class="form-control" id="awsm_name"
+                                            placeholder="salesman_name" name="salesman_name"
+                                            value="<%=QueryData.salesman_name %>">
+                                    </div>
+
+                                    <div class="col-2 ">
+                                        <label for="SALESMAN CODE" class="mr-sm-2">DSR CODE</label>
+                                        <input type="text" class="form-control" id="awsm_code" placeholder="salesman_id"
+                                            name="salesman_id" value="<%=QueryData.salesman_id %>">
+                                    </div>
+                                    <div class="col-2">
+
+                                        <div class="ms-auto">
+
+                                            <label for="salesman_type">SELECT DSR TYPE</label>
+
+                                            <select name="salesman_type" class="form-control" id="salesman_type"
+                                                placeholder="salesman_type" value="<%=QueryData.salesman_type %>">
+
+                                                <option value=""> DSR Type </option>
+                                                <option value="Awsm" <%=QueryData.salesman_type==='Awsm' ? 'selected'
+                                                    : '' %>>DSR</option>
+                                                <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
+                                                    %>
+                                                    >SDA</option>
+                                                <option value="Psm" <%=QueryData.salesman_type==='Psm' ? 'selected' : ''
+                                                    %>
+                                                    >PSM</option>>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-2 mt-2">
+                                        <label for="ASE EMAIL ID" class="mr-sm-2">SO EMAIL ID</label>
+                                        <input type="text" class="form-control" id="ase_email_id"
+                                            placeholder="ase_email_id" name="ase_email_id"
+                                            value="<%=QueryData.ase_email_id %>">
+                                    </div>
+                                    <div class="col-2 mt-2">
+                                        <label for="FROM" class="mr-sm-2">FROM</label>
+                                        <input type="date" class="form-control" id="fromDate" placeholder="fromDate"
+                                            name="fromDate" value="<%=QueryData.fromDate %>">
+                                    </div>
+                                    <div class="col-2 mt-2">
+                                        <label for="TO" class="mr-sm-2">TO</label>
+                                        <input type="date" class="form-control" id="toDate" placeholder="toDate"
+                                            name="toDate" value="<%=QueryData.toDate %>">
+                                    </div>
+                                </div>
+                                <div class="text-right mb-3">
+                                    <!-- <a href="./data-whitelisting"
+                                        class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</a> -->
+                                    <button type="reset"
+                                        class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</button>
+
+                                    <button type="submit"
+                                        class="btn-shadow  btn btn-primary custom-btn  btn-lg mt-3">Apply</button>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <div>
+                            <div class="dataTables_length" id="example_length">
+                                <!-- <label>
+                                    Show <select name="example_length" aria-controls="example" class=""
+                                        fdprocessedid="nlo2j">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> entries</label> -->
+                                <!-- <div id="example_filter" class="dataTables_filter">
+                                    <label>Search: <a href=""><input type="search" name="search" class="" placeholder=""
+                                                aria-controls="example"></a>
+                                    </label>
+                                </div> -->
+                            </div>
+
+                            <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                Showing <%= Math.min((currentPage - 1) * 10 + 1, totalEntrie) %> to <%=
+                                        Math.min(currentPage * 10, totalEntrie) %> of <%= totalEntrie %> entries
+                            </div>
+
+
+                            <table id="examplea" class="table table-striped table-bordered table-responsive"
+                                cellspacing="0" width="100%">
+
+
+                                <thead>
+                                    <tr>
+                                        <th class="tabel-width">DSR CREATED DATE</th>
+                                        <th class="tabel-width">DSR STATUS</th>
+                                        <th class="tabel-width">SO EMAIL ID</th>
+                                        <th class="tabel-width">SO NAME</th>
+                                        <th class="tabel-width">SO CODE</th>
+                                        <th class="tabel-width">SO STATE</th>
+                                        <th class="tabel-width">SO CITY</th>
+                                        <th class="tabel-width">DISTRIBUTOR NAME</th>
+                                        <th class="tabel-width">DISTRIBUTOR CODE</th>
+                                        <th class="tabel-width">DISTRIBUTOR STATE</th>
+                                        <th class="tabel-width">DISTRIBUTOR CITY</th>
+                                        <th class="tabel-width">DSR NAME</th>
+                                        <th class="tabel-width">DSR CODE</th>
+                                        <th class="tabel-width">DSR STATE</th>
+                                        <th class="tabel-width">DSR CITY</th>
+                                        <th class="tabel-width">DSR TYPE</th>
+                                        <th class="tabel-width">VIKAS ID</th>
+                                        <th class="tabel-width">REGION</th>
+                                        <th class="tabel-width">CHANNEL TYPE</th>
+                                        <th class="tabel-width">ACTION</th>
+                                        <th class="tabel-width">EDIT</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% dataWhitelistingResult.forEach((data)=> {%>
+                                        <tr>
+                                            <form
+                                                action="./data-whitelisting/save-whitelist-data?awsm_name=<%=data.awsm_name %>&awsm_code=<%=data.awsm_code %>"
+                                                method="post">
+                                                <td>
+                                                    <%= data.insert_timestamp ?
+                                                        data.insert_timestamp.toLocaleDateString('en-IN'): '' %>
+                                                </td>
+                                                <td>
+                                                    <p id="salesmanStatus"
+                                                        class="<%= (data.is_active === '1') ? 'ACTIVE' : 'DEACTIVE' %>">
+                                                        <%= (data.is_active==='1' ) ? 'ACTIVE' : 'DEACTIVE' %>
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.ase_email_id %>
+                                                </td>
+                                                <td>
+                                                    <%= data.ase_name %>
+                                                </td>
+                                                <td>
+                                                    <%= data.ase_employee_code %>
+                                                </td>
+                                                <td>
+                                                    <%= data.ase_state %>
+                                                </td>
+                                                <td>
+                                                    <%= data.ase_city %>
+                                                </td>
+                                                <td>
+                                                    <%= data.aw_name %>
+                                                </td>
+                                                <td>
+                                                    <%= data.aw_code %>
+                                                </td>
+                                                <td>
+                                                    <%= data.aw_state %>
+                                                </td>
+                                                <td>
+                                                    <%= data.aw_city %>
+                                                </td>
+                                                <td>
+                                                    <span id="salesman_name_span_<%= data.awsm_code %>">
+                                                        <%= data.awsm_name %>
+                                                    </span>
+                                                    <input class="d-none form-control" value="<%= data.awsm_name %>"
+                                                        id="salesman_name_input_<%= data.awsm_code %>"
+                                                        name="salesman_name">
+                                                </td>
+                                                <td>
+                                                    <span id="salesman_code_span_<%= data.awsm_code %>">
+                                                        <%= data.awsm_code %>
+                                                    </span>
+                                                    <input class="d-none form-control" value="<%= data.awsm_code %>"
+                                                        id="salesman_code_input_<%= data.awsm_code %>"
+                                                        name="salesman_code">
+                                                </td>
+                                                <!-- <td>
+                                                    <span id="salesman_name_span">
+                                                        <%= data.awsm_name %>
+                                                    </span>
+                                                    <input class="d-none form-control" value="<%= data.awsm_name %>"
+                                                        id="salesman_name_input" name="salesman_name">
+                                                </td>
+                                                <td>
+                                                    <span id="salesman_code_span">
+                                                        <%= data.awsm_code %>
+                                                    </span>
+                                                    <input class="d-none form-control" value="<%= data.awsm_code %>"
+                                                        id="salesman_code_input" name="salesman_code">
+                                                </td> -->
+                                                <td>
+                                                    <%= data.awsm_state %>
+                                                </td>
+                                                <td>
+                                                    <%= data.awsm_city %>
+                                                </td>
+                                                <td>
+                                                    <%= data.salesman_type %>
+                                                </td>
+                                                <td>
+                                                    <%= data.vikas_id %>
+                                                </td>
+                                                <td>
+                                                    <%= data.region %>
+                                                </td>
+                                                <td>
+                                                    <%= data.channel %>
+                                                </td>
+                                                <td>
+                                                    <label class="custom-switch">
+                                                        <input type="checkbox" id="toggleCheckbox-<%= data.awsm_code %>"
+                                                            class="custom-control id-check-checkbox"
+                                                            data-awsm-code="<%= data.awsm_code %>"
+                                                            <%=data.is_active==='1' ? 'checked' : '' %>>
+                                                        <span class="custom-label"></span>
+                                                    </label>
+                                                </td>
+                                                <!-- <td>
+                                                    <label class="custom-switch">
+                                                        <input type="checkbox" class="custom-control"
+                                                            class="id-check <%=data.awsm_code%>" id="statusCheckbox"
+                                                            <%=data.is_active==='1' ? 'checked' : '' %>
+                                                        data-awsm-code="<%= data.awsm_code %>">
+                                                            <span class="custom-label"></span>
+                                                    </label>
+                                                </td> -->
+                                                <td class="d-flex">
+                                                    <button id="editButton-<%= data.awsm_code %>" type="button"
+                                                        onclick="toggleEditableFields('<%= data.awsm_code %>')"
+                                                        class="btn btn-shadow bg-mean-fruit custom-btn dt-buttons btn-lg">
+                                                        <i class="fa fa-pencil"
+                                                            style="font-size:16px;color:DARK;">Edit</i>
+                                                    </button>
+                                                    <button id="saveButton-<%= data.awsm_code %>" type="submit"
+                                                        class="btn border mr-2 d-none">Save</button>
+                                                    <button id="cancelButton-<%= data.awsm_code %>" type="button"
+                                                        class="btn border d-none"
+                                                        onclick="toggleEditableFields('<%= data.awsm_code %>')">Cancel</button>
+                                                </td>
+
+                                            </form>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+
+                            </table>
+
+                            <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                <a href="/data-whitelisting?page=<%= currentPage - 1 %>"
+                                    class="paginate_button previous <%= startPage === 1 ? 'disabled' : '' %>"
+                                    aria-controls="example" data-dt-idx="0" tabindex="-1"
+                                    id="example_previous">Previous</a>
+                                <span>
+                                    <% for (let i=startPage; i <=endPage; i++) { %>
+                                        <a href="/data-whitelisting?page=<%=i%>" class="paginate_button current"
+                                            aria-controls="example" data-dt-idx="<%=i %>" tabindex="0">
+                                            <%= i %>
+                                        </a>
+                                        <% } %>
+                                </span>
+                                <a href="/data-whitelisting?page=<%= (parseInt(currentPage) + 1) %>"
+                                    class="paginate_button next <%= endPage === totalRows ? 'disabled' : '' %>"
+                                    aria-controls="example" id="example_next">Next</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Modal for editing details -->
+
+    <!-- Modal -->
+    <div class="modal modal-top" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content width-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">
+                        Edit Whitelisting Details</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <form class="form-" action="" enctype='multipart/form-data'>
+                    <div class="modal-body py-0">
+
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="SALESMAN"> SALESMAN CREATED DATE</label>
+                                    <input type="text" readonly="" class="form-control" id=""
+                                        value="SALESMAN CREATED DATE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SALESMAN STATUS">SALESMAN STATUS</label>
+                                    <input type="text" readonly="" class="form-control" id="SALESMAN STATUS"
+                                        value="SALESMAN STATUS">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ASE EMAIL ID">ASE EMAIL ID</label>
+                                    <input type="text" readonly="" class="form-control" id="ASE EMAIL ID"
+                                        value="ASE EMAIL ID">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ASE NAME">ASE CODE</label>
+                                    <input type="text" readonly="" class="form-control" id="ASE CODE" value="ASE CODE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="AWSM Code">AWSM Code</label>
+                                    <input type="text" readonly="" class="form-control" id="AWSM Code"
+                                        value="AWSM Code">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ASE STATE">ASE STATE</label>
+                                    <input type="text" readonly="" class="form-control" id="ASE STATE"
+                                        value="ASE STATE">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ASE CITY">ASE CITY</label>
+                                    <input type="text" readonly="" class="form-control" id="ASE CITY" value="ASE CITY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="AW NAME">AW NAME</label>
+                                    <input type="text" class="form-control" id="AW NAME" value="AW NAME">
+                                </div>
+                                <div class="form-group">
+                                    <label for="AW CODE">AW CODE</label>
+                                    <input type="text" readonly="" class="form-control" id="AW CODE" value="AW CODE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="AW STATE">AW STATE</label>
+                                    <input type="text" readonly="" class="form-control" id="AW STATE" value="AW STATE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="AW CITY">AW CITY</label>
+                                    <input type="text" readonly="" class="form-control" id="AW CITY" value="AW CITY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SALESMAN NAME">SALESMAN NAME</label>
+                                    <input type="text" class="form-control" id="SALESMAN NAME" value="SALESMAN NAME">
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="SALESMAN CODE">SALESMAN CODE</label>
+                                    <input type="text" class="form-control" id="SALESMAN CODE" value="SALESMAN CODE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SALESMAN STATE">SALESMAN STATE</label>
+                                    <input type="text" readonly="" class="form-control" id="SALESMAN STATE"
+                                        value="SALESMAN STATE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="SALESMAN TYPE">SALESMAN TYPE</label>
+                                    <input type="text" readonly="" class="form-control" id="SALESMAN TYPE"
+                                        value="SALESMAN TYPE">
+                                </div>
+                                <div class="form-group">
+                                    <label for="VIKAS ID">VIKAS ID</label>
+                                    <input type="text" readonly="" class="form-control" id="VIKAS ID" value="VIKAS ID">
+                                </div>
+                                <div class="form-group">
+                                    <label for="REGION">REGION</label>
+                                    <input type="text" readonly="" class="form-control" id="REGION" value="REGION">
+                                </div>
+                                <div class="form-group">
+                                    <label for="CHANNEL TYPE">CHANNEL TYPE</label>
+                                    <input type="text" readonly="" class="form-control" id="CHANNEL TYPE"
+                                        value="CHANNEL TYPE">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="ACTION">ACTION</label>
+                                    <input type="text" readonly="" class="form-control" id="ACTION" value="ACTION">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary custom-btn ">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById("files");
+            const selectedFileName = document.getElementById("selectedFileName");
+            const deleteAWSMRadio = document.getElementById("DeleteAWSM");
+            const updateRadio = document.getElementById("Update");
+
+            fileInput.addEventListener("change", function (event) {
+                const selectedFile = event.target.files[0];
+                if (selectedFile) {
+                    // Display the selected file name in the span element
+                    selectedFileName.textContent = selectedFile.name;
+
+                    // Check if the selected file is a CSV file
+                    if (!selectedFile.name.toLowerCase().endsWith(".csv")) {
+                        alert("Please select a valid CSV file.");
+                        fileInput.value = ""; // Clear the file input
+                        selectedFileName.textContent = ""; // Clear the displayed file name
+                    }
+                }
+            });
+
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                if (!fileInput.files.length) {
+                    event.preventDefault(); // Prevent form submission if no file selected
+                    alert("Please select a file.");
+                } else {
+                    // File is selected, allow form submission
+                    alert("File submitted successfully."); // Display a success message
+                }
+            });
+
+            // Add an event listener to the "Delete AWSM" and "Update" radio buttons
+            deleteAWSMRadio.addEventListener("click", function () {
+                // Reset the file input when "Delete AWSM" is selected
+                fileInput.value = "";
+                selectedFileName.textContent = "";
+            });
+
+            updateRadio.addEventListener("click", function () {
+                // Reset the file input when "Update" is selected
+                fileInput.value = "";
+                selectedFileName.textContent = "";
+            });
+        });
+    </script>
+
+    <script>
+
+        function fnExcelReport(file, ase_code, ase_name, aw_code, awsm_name, awsm_code, salesman_type, ase_email_id, fromDate, toDate) {
+
+            fetch(`/data-whitelisting/export?ase_code=${ase_code}&ase_name=${ase_name}&aw_code=${aw_code}&awsm_name=${awsm_name}&awsm_code=${awsm_code}&salesman_type=${salesman_type}&ase_email_id=${ase_email_id}&fromDate=${fromDate}&toDate=${toDate}`)
+                .then((res) => res.json())
+                .then((data) => {
+
+                    data.forEach((item) => {
+                        // item.dob = formatDate(item.dob);
+                        // item.created_on = formatDate(item.created_on);
+                        item.insert_timestamp = formatDate(item.insert_timestamp);
+                        // item.update_timestamp = formatDate(item.update_timestamp);
+                        // item.bank_account_no = formatBankAccount(item.bank_account_no);
+                    });
+
+                    const csvContent = createCSV(data);
+
+                    var element = document.createElement('a');
+                    element.setAttribute('href', 'data:csv;charset=utf-8, ' + encodeURIComponent(csvContent));
+                    element.setAttribute('download', file);
+
+                    document.body.appendChild(element);
+
+                    element.click();
+
+                    document.body.removeChild(element);
+                });
+        }
+
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatBankAccount(accountNumber) {
+            return accountNumber.match(/.{1,4}/g).join(' ');
+        }
+
+        function createCSV(data) {
+
+            const headers = [
+                "SALESMAN CREATED DATE",
+                "SALESMAN STATUS",
+                "ASE EMAIL ID",
+                "ASE NAME",
+                "ASE CODE",
+                "ASE STATE",
+                "ASE CITY",
+                "AW NAME",
+                "AW CODE",
+                "AW STATE",
+                "AW CITY",
+                "SALESMAN NAME",
+                "SALESMAN CODE",
+                "SALESMAN STATE",
+                "SALESMAN CITY",
+                "SALESMAN TYPE",
+                "VIKAS ID",
+                "REGION",
+                "CHANNEL TYPE",
+                "ACTION"
+            ]
+
+            const flattenData = data.map(item => ({
+                "SALESMAN CREATED DATE": item.insert_timestamp,
+                "SALESMAN STATUS": (item.is_active == 1) ? 'ACTIVE' : 'UNACTIVE',
+                "ASE EMAIL ID": item.ase_email_id,
+                "ASE NAME": item.ase_name,
+                "ASE CODE": item.ase_employee_code,
+                "ASE STATE": item.ase_state,
+                "ASE CITY": item.ase_city,
+                "AW NAME": item.aw_name,
+                "AW CODE": item.aw_code,
+                "AW STATE": item.aw_state,
+                "AW CITY": item.aw_city,
+                "SALESMAN NAME": item.awsm_name,
+                "SALESMAN CODE": item.awsm_code,
+                "SALESMAN STATE": item.awsm_state,
+                "SALESMAN CITY": item.awsm_city,
+                "SALESMAN TYPE": item.salesman_type,
+                "VIKAS ID": " ",
+                "REGION": item.region,
+                "CHANNEL TYPE": item.channel,
+                "ACTION": ""
+            }));
+
+            const replacer = (key, value) => (value === null ? "" : value);
+            const csvContent = [headers.join(","), ...flattenData.map(row => headers.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(","))].join("\r\n");
+            return csvContent;
+
+            // const replacer = (key, value) => value === null ? '' : value;
+            // const header = Object.keys(data[0])
+            // const csvContent = [
+            //     header.join(','),
+            //     ...data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+            // ].join('\r\n');
+            // return csvContent;
+        }
+
+
+        document.getElementById("btnExport")
+            .addEventListener("click", function () {
+                var filename = "dataWhiteListing.csv";
+                var salesman_type = document.getElementById("salesman_type").value;
+                var aw_code = document.getElementById("aw_code").value;
+                var awsm_name = document.getElementById("awsm_name").value;
+                var awsm_code = document.getElementById("awsm_code").value;
+                var ase_code = document.getElementById("ase_code").value;
+                var ase_name = document.getElementById("ase_name").value;
+                var fromDate = document.getElementById("fromDate").value;
+                var toDate = document.getElementById("toDate").value;
+                var ase_email_id = document.getElementById("ase_email_id").value;
+                fnExcelReport(filename, ase_code, ase_name, aw_code, awsm_name, awsm_code, salesman_type, ase_email_id, fromDate, toDate);
+            }, false);
+
+    </script>
+
+    <script>
+        function openModal() {
+            $('#viewModal').modal('show');
+        }
+
+    </script>
+
+    <script>
+        function toggleEditableFields(awsmCode) {
+            var nameSpan = document.getElementById('salesman_name_span_' + awsmCode);
+            var nameInput = document.getElementById('salesman_name_input_' + awsmCode);
+            var codeSpan = document.getElementById('salesman_code_span_' + awsmCode);
+            var codeInput = document.getElementById('salesman_code_input_' + awsmCode);
+
+            nameSpan.classList.toggle('d-none');
+            nameInput.classList.toggle('d-none');
+            codeSpan.classList.toggle('d-none');
+            codeInput.classList.toggle('d-none');
+
+            var editButton = document.getElementById('editButton-' + awsmCode);
+            var saveButton = document.getElementById('saveButton-' + awsmCode);
+            var cancelButton = document.getElementById('cancelButton-' + awsmCode);
+
+            editButton.classList.toggle('d-none');
+            saveButton.classList.toggle('d-none');
+            cancelButton.classList.toggle('d-none');
+        }
+    </script>
+
+    <script>
+        function toggleButtons(awsm_code) {
+            var editButton = document.getElementById("editButton-" + awsm_code);
+            var saveButton = document.getElementById("saveButton-" + awsm_code);
+            var cancelButton = document.getElementById("cancelButton-" + awsm_code);
+
+            if (editButton.style.display === "none") {
+                editButton.style.display = "block";
+                saveButton.style.display = "none";
+                cancelButton.style.display = "none";
+            } else {
+                editButton.style.display = "none";
+                saveButton.style.display = "block";
+                cancelButton.style.display = "block";
+            }
+        }
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var table = document.querySelector('#example');
+            var dataTable = new DataTable(table, {
+                dom: '<"dt-buttons"Bf><"clear">lirtp',
+                paging: true,
+                autoWidth: true,
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        filename: 'DataTableExcel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var statusCheckbox = document.getElementById("statusCheckbox");
+            var salesmanStatus = document.getElementById("salesmanStatus");
+
+            statusCheckbox.addEventListener("click", function () {
+                if (statusCheckbox.checked) {
+                    salesmanStatus.classList.add("ACTIVE");
+                } else {
+                    salesmanStatus.classList.add("DEACTIVE");
+                }
+            });
+        });
+
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    // const awsm_code = checkbox.id.split('-')[1];
+                    // console.log(`Checkbox with awsm_code ${awsm_code} changed: ${checkbox.checked}`);
+                    location.reload();
+                });
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('tbody').on('change', '.id-check-checkbox', function () {
+                var isChecked = $(this).prop('checked');
+                var awsm_code = $(this).data('awsm-code');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/data-whitelisting/updateStatus',
+                    data: { isChecked: isChecked, awsm_code: awsm_code },
+                    success: function (response) {
+                        console.log('Status saved successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error saving status');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        var action = document.getElementById("").value;
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            $('#statusCheckbox').on('change', function () {
+                var isChecked = $(this).prop('checked');
+                var awsm_code = $(this).data('awsm-code');
+                $.ajax({
+                    type: 'POST',
+                    url: '/data-whitelisting/updateStatus',
+                    data: { isChecked: isChecked, awsm_code: awsm_code },
+                    success: function (response) {
+                        console.log('Status saved successfully:', response);
+                    },
+                    error: function (error) {
+                        console.error('Error saving status:', error);
+                    }
+                });
+            });
+        });
+    </script> -->
+
+
+    <%- include("../shared/footer"); %>

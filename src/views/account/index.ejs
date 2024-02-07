@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <title> Admin-MARS</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link rel="icon" type="image/x-icon" href="../images/ficon (1).png">
+
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+<body class="vh-100">
+    <div>
+
+        <% if (message) { %>
+            <div class="alert">
+                <p>
+                    <%= message %>
+                </p>
+            </div>
+            <% } %>
+                <div class="container-fluid">
+                    <div class="row vh-100 ">
+                        <div class="col-md-7 col-lg-4 col-xl-4 bg-light pt-5">
+                            <div class="mt-5 pt-5 p-3 z-index-0">
+                                <div class=" text-center pt-4">
+                                    <img src="../images/logo-main.svg" width="200" alt="" loading="lazy">
+                                </div>
+
+                                <form role="form text-left" action="./account/user-login">
+                                    <div class="mb-3 mt-5 pt-2">
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Your Email" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Your Password" required="">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn login-btn w-100 my-4 mb-2">Sign in</button>
+                                    </div>
+                                </form>
+
+                                <div class="d-flex new-1 mt-3 text-black">
+                                    <p><a href="./account/forgot-password" class="text-black-50"> Forgot password? </a>
+                                    </p>
+                                    <p><a href="./account/signup" class="text-black-50"> Not registered?</a></p>
+                                </div>
+                                <div class=" mt-5 pt-3">
+                                    <div class="mt-5  text-center">
+                                        <div class="app-footer-right">
+                                            <p class="mb-0 text-center">© 2024. All right reserved.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-lg-7 col-xl-8 text-center pt-5 mt-4">
+                            <img src="../images/authentication.jpg" class="img-fluid custom-img" alt="Phone image">
+                        </div>
+
+                    </div>
+                </div>
+
+    </div>
+    <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+    <script src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js'></script>
+    <script src='https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.js'></script>
+    <script src="../js/main.js"></script>
+
+
+    <script>
+        const messageElement = document.querySelector('.alert');
+        if (messageElement) {
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<%- include("../shared/header"); %>
+
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div>
+                    <b> Notifications</b>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 mx-auto">
+            <div class="mb-3 ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form action="">
+                                <table id="example" class="table  table-bordered " cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="tabel-width">S.NO</th>
+                                            <th class="tabel-width">Notifications</th>
+                                            <th class="tabel-width">Date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <% notificationResult.forEach((ele)=> { %>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <%= ele.id %>
+                                                </td>
+                                                <td>
+                                                    <%= ele.message %>
+                                                </td>
+                                                <td>
+                                                    <%= ele.created_date.toLocaleDateString('en-IN') %>
+                                                </td>
+                                                <td>
+                                                    <% if (ele.kyc_type !=='Edit-KYC-Request' ) { %>
+                                                        <a class="browse-files-text"
+                                                            href="/kyc/kyc-notification?notify_id=<%= ele.id %>">click</a>
+                                                        <% } else { %>
+                                                            <a class="browse-files-text"
+                                                                href="/edit-kyc-data/edit-kyc-notification?notify_id=<%= ele.id %>">click</a>
+                                                            <% } %>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <% }); %>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                "paging": true,
+                "autoWidth": true,
+                "buttons": [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        filename: 'DataTableExcel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+    <%- include("../shared/footer"); %>

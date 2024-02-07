@@ -1,0 +1,136 @@
+<%- include("../shared/header"); %>
+
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div>
+                    <b> UPLOAD-PAYOUT DATA</b>
+                </div>
+            </div>
+            <div class="page-title-actions">
+
+                <div class="d-inline-block dropdown">
+                    <a class="btn btn-danger custom-button " href="/payout-history">
+                        <i class=" fa fa-cloud-download icon-gradient bg-mean-fruit  custom-btn ">
+                        </i> Payout History
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 mx-auto">
+            <div class="mb-3 card">
+                <div class="card-header-tab text-center card-header-tab-animation card-header text-center" style="border-bottom-width: 1px;
+                padding-top: 3px;
+                padding-bottom: 0;
+                padding-right: .625rem;
+                height: 4.5rem;">
+                    <div class=" pt-4  text-left">
+                        <h6 style="color: black;">SELECT REPORT TYPE <a download href="/excel-format/SamplePayout.csv"
+                                style="color: #41378D;
+                                font-size: 12px;
+                                text-decoration: underline;"><b>(Download Sample)</b></a>
+                        </h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active text-center" id="tabs-eg-77">
+                            <form action="./upload-payout/upload-file" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <p class="d-flex align-items-center "><i class="fa fa-file mr-3"
+                                                style="font-size: 28px;"></i><span class=" mr-3"> &nbsp;xxx.csv</span>
+                                            <span class=" mr-3" id="selectedFileName"></span>
+                                            <input type="file" name="file"
+                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                                id="files" hidden="hidden" />
+                                            <span id="custom-text"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <button type="reset" id="removeFileButton"
+                                                class="btn-shadow remove-file-icon btn border">Remove</button>
+                                            <button type="button" class="btn-shadow btn btn-info"
+                                                id="custom-button"><b>Add File</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <div class="drag-file-area">
+                                            <span class=""></span>
+                                            <h3 class="dynamic-message"
+                                                style="position: absolute; top: 175px; left: 21px; text-align: center; font-size: 18px;">
+                                                You can also drag & drop your files here</h3>
+                                            <input style="width: 100%; height: 134px; position: inherit;" id="real-file"
+                                                type="file" name="file" class="default-file-input browsefiles"
+                                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                            <br>
+                                        </div>
+                                        <div class="text-center w-100">
+                                            <button type="submit" class="upload-button  custom-btn">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const realFileInput = document.getElementById("real-file");
+            const selectedFileName = document.getElementById("selectedFileName");
+            const removeFileButton = document.getElementById("removeFileButton");
+            const form = document.querySelector("form");
+
+            realFileInput.addEventListener("change", function (event) {
+                const selectedFile = event.target.files[0];
+                if (selectedFile) {
+                    // Display the selected file name
+                    selectedFileName.textContent = selectedFile.name;
+                    if (!selectedFile.name.toLowerCase().endsWith(".csv")) {
+                        alert("Please select a valid CSV file.");
+                        fileInput.value = ""; // Clear the file input
+                        selectedFileName.textContent = ""; // Clear the displayed file name
+                    }
+                }
+            });
+
+            form.addEventListener("submit", function (event) {
+                // Check if the file input is empty
+                if (realFileInput.files.length === 0) {
+                    event.preventDefault(); // Prevent form submission
+                    alert("Please select your file."); // Display an error message
+                } else {
+                    // File is selected, allow form submission
+                    alert("File submitted successfully."); // Display a success message
+                }
+            });
+
+            removeFileButton.addEventListener("click", function () {
+                // Clear the file input field and the displayed file name
+                realFileInput.value = "";
+                selectedFileName.textContent = "";
+            });
+
+            const customBtn = document.getElementById("custom-button");
+
+            customBtn.addEventListener("click", function () {
+                realFileInput.click();
+            });
+        });
+    </script>
+
+
+
+
+    <%- include("../shared/footer"); %>

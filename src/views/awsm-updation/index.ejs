@@ -1,0 +1,1651 @@
+<%- include("../shared/header"); %>
+
+    <div class="app-page-title">
+
+        <div class="page-title-wrapper">
+
+            <div class="page-title-heading">
+
+                <!-- <div class="page-title-icon">
+
+                    <i class=" fas fa-sort-amount-up icon-gradient bg-mean-fruit">
+
+                    </i>
+
+                </div> -->
+
+                <div>
+                    <b>AWSM UPDATION</b>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <% if(user.role==='admin' ){ %>
+        <div class="row">
+
+            <div class="col-md-12 col-lg-12 mx-auto">
+
+                <div class="mb-3 ">
+
+                    <div class="card">
+
+                        <div class="card-header-tab card-header-tab-animation card-awsm card-header">
+
+                            <div class="row">
+
+                                <div class=" col-lg-6 col-md-6  col-12">
+
+                                    <h5><b>SELECT REPORT TYPE</b></h5>
+
+                                </div>
+
+                                <div class="col-lg-6 col-lg-6 col-12 text-right">
+                                    <button id="btnExport" class="btn  btn-outline-alternate custom-button  mr-3"><i
+                                            class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download Latest
+                                        Data</button>
+
+                                    <button id="btnExportOld" class="btn btn-outline-alternate custom-button  mr-3"><i
+                                            class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download Old
+                                        Data</button>
+
+                                    <button class="btn-shadow  btn btn-primary custom-btn btn-lg "
+                                        data-toggle="collapse" data-target="#demo"><i
+                                            class='fas fa-filter mr-2'></i>Filter</button>
+
+                                </div>
+
+                                <div class="mt-3 px-xl-2  col-12">
+
+                                    <div>
+
+                                        <a class="mt-2" href="./kyc">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            DSR Kyc
+
+                                        </a>
+
+                                        <a class="mt-2" href="./edit-kyc-data">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            EDIT KYC DATA
+
+                                        </a>
+
+                                        <a class="mt-2" href="./authentication">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            AUTHENTICATION
+
+                                        </a>
+
+                                        <a class="mt-2" href="./payout">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            PAYOUT
+
+                                        </a>
+
+                                        <a class="mt-2" href="./kyc-history">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            KYC History
+
+                                        </a>
+
+                                        <a class="mt-2" href="./master-data">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            MASTER DATA
+
+                                        </a>
+
+                                        <a class="mt-2" href="./kyc-status">
+
+                                            <img src="./images/off.png" alt="">
+
+                                            KYC STATUS
+
+                                        </a>
+
+                                        <a class="mt-2" href="./awsm-updation">
+
+                                            <img src="./images/on.png" alt="">
+
+                                            AWSM UPDATION
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="card-body">
+
+
+
+
+
+                            <div id="demo" class="collapse">
+
+                                <form action="./awsm-updation">
+
+                                    <div class="row">
+
+
+
+                                        <div class="col-2">
+
+                                            <label for="AWSM-ID" class="mr-sm-2">AWSM ID</label>
+
+                                            <input type="text" class="form-control" id="awsm_code" placeholder="AWSM ID"
+                                                name="awsm_code" value="<%=QueryData.awsm_code %>">
+
+                                        </div>
+
+                                        <div class="col-2 ">
+
+                                            <label for="FROM" class="mr-sm-2">FROM (REPLACE DATE)</label>
+
+                                            <input type="date" class="form-control" id="fromDate" placeholder="FROM"
+                                                name="fromDate" value="<%=QueryData.fromDate %>">
+
+                                        </div>
+
+                                        <div class="col-2 ">
+
+                                            <label for="TO" class="mr-sm-2">TO (REPLACE DATE)</label>
+
+                                            <input type="date" class="form-control" id="toDate" placeholder="TO"
+                                                name="toDate" value="<%=QueryData.toDate %>">
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="text-right mb-3">
+
+                                        <!-- <a href="./awsm-updation"
+                                            class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</a> -->
+                                        <button type="reset"
+                                            class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</button>
+                                        <button type="submit"
+                                            class="btn-shadow  btn btn-primary custom-btn  btn-lg mt-3">Apply</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <br>
+
+                            <h5>Latest Data </h5>
+
+                            <div>
+
+                                <table id="example" class="table table-striped table-bordered table-responsive"
+                                    cellspacing="0">
+
+                                    <thead>
+
+
+
+                                        <tr>
+
+                                            <th class="tabel-width">KYC TYPE</th>
+
+                                            <th class="tabel-width">ASE EMAIL ID</th>
+
+                                            <th class="tabel-width">ASE ID</th>
+
+                                            <th class="tabel-width">ASE NAME</th>
+
+                                            <th class="tabel-width">AW ID</th>
+
+                                            <th class="tabel-width">AW NAME</th>
+
+                                            <th class="tabel-width">AWSM ID</th>
+
+                                            <th class="tabel-width">AWSM NAME</th>
+
+                                            <th class="tabel-width">BENEFICIARY NAME</th>
+
+                                            <th class="tabel-width">ADDRESS</th>
+
+                                            <th class="tabel-width">AWSM PHOTO</th>
+
+                                            <th class="tabel-width">BANK A/C NO.</th>
+
+                                            <th class="tabel-width">IFSC CODE</th>
+
+                                            <th class="tabel-width">CHEQUE IMAGE</th>
+
+                                            <th class="tabel-width">BANK NAME</th>
+
+                                            <th class="tabel-width">PHOTO ID IMAGE</th>
+
+                                            <th class="tabel-width">BIOMETRIC STATUS</th>
+
+                                            <th class="tabel-width">MOBILE NO</th>
+
+                                            <th class="tabel-width">CALLING COUNT</th>
+
+                                            <th class="tabel-width">CALLING STATUS</th>
+
+                                            <th class="tabel-width">VALIDATION CALLING REMARK</th>
+
+                                            <th class="tabel-width">KYC STATUS</th>
+
+                                            <th class="tabel-width">KYC REJECTION REASON</th>
+
+                                            <th class="tabel-width">CHANNEL TYPE</th>
+
+                                            <th class="tabel-width">REPLACE DATE</th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <% awsmLatest.forEach((data)=> {%>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Replace-KYC-Request
+                                                </td>
+
+                                                <td>
+                                                    <%= data.ase_email %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.ase_employee_code %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.ase_name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.aw_code %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.aw_name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.awsm_code %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.awsm_name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.beneficiary_name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.address %>
+                                                </td>
+
+                                                <td>
+
+                                                    <p class="tabel-img">
+
+                                                        <img width="100" height="50" src="<%= data.photo %>"
+                                                            onclick="getImage(this);">
+
+                                                    </p>
+
+                                                </td>
+
+                                                <td>
+                                                    <%= data.bank_account_no %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.ifsc_code %>
+                                                </td>
+
+                                                <td>
+                                                    <p class="tabel-img">
+
+                                                        <img width="100" height="50" src="<%= data.bank_cheque %>"
+                                                            onclick="getImage(this);">
+
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.bank_name %>
+                                                </td>
+
+                                                <td>
+                                                    <p class="tabel-img">
+
+                                                        <img width="100" height="50" src="<%= data.photo_id %>"
+                                                            onclick="getImage(this);">
+
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <%= (data.biometric_status==1)? true : false %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.mobile_no %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.calling_count %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.calling_status %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.calling_remarks %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.status %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.wip_remarks %>
+                                                </td>
+
+                                                <td>
+                                                    <%= data.channel %>
+                                                </td>
+
+                                                <td data-order="1000">
+                                                    <%= data.update_timestamp.toLocaleDateString('en-IN') %>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <%})%>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card mt-3">
+
+                        <div class="card-body">
+
+                            <h5>OLD DATA
+
+                            </h5>
+
+                            <div>
+
+                                <table id="example1" class="table table-striped table-bordered table-responsive"
+                                    cellspacing="0">
+
+                                    <thead>
+
+
+
+                                        <tr>
+
+                                            <th class="tabel-width">KYC TYPE</th>
+
+                                            <th class="tabel-width">ASE EMAIL ID</th>
+
+                                            <th class="tabel-width">ASE ID</th>
+
+                                            <th class="tabel-width">ASE NAME</th>
+
+                                            <th class="tabel-width">AW ID</th>
+
+                                            <th class="tabel-width">AW NAME</th>
+
+                                            <th class="tabel-width">AWSM ID</th>
+
+                                            <th class="tabel-width">AWSM NAME</th>
+
+                                            <th class="tabel-width">BENEFICIARY NAME</th>
+
+                                            <th class="tabel-width">ADDRESS</th>
+
+                                            <th class="tabel-width">AWSM PHOTO</th>
+
+                                            <th class="tabel-width">BANK A/C NO.</th>
+
+                                            <th class="tabel-width">IFSC CODE</th>
+
+                                            <th class="tabel-width">CHEQUE IMAGE</th>
+
+                                            <th class="tabel-width">BANK NAME</th>
+
+                                            <th class="tabel-width">PHOTO ID IMAGE</th>
+
+                                            <th class="tabel-width">BIOMETRIC STATUS</th>
+
+                                            <th class="tabel-width">MOBILE NO</th>
+
+                                            <th class="tabel-width">CALLING COUNT</th>
+
+                                            <th class="tabel-width">CALLING STATUS</th>
+
+                                            <th class="tabel-width">VALIDATION CALLING REMARK</th>
+
+                                            <th class="tabel-width">KYC STATUS</th>
+
+                                            <th class="tabel-width">KYC REJECTION REASON</th>
+
+                                            <th class="tabel-width">CHANNEL TYPE</th>
+
+                                            <th class="tabel-width">REPLACE DATE</th>
+
+                                            <th class="tabel-width">RESTORE</th>
+
+
+
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <% awsmOld.forEach((data)=> {%>
+
+                                        <tbody>
+                                            <form
+                                                action="./awsm-updation/awsm-updation-restore?kyc_id=<%=data.kyc_id%>&history_id=<%=data.history_id%>"
+                                                method="post">
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" type="hidden" value="<%= data.kyc_type %>"
+                                                            name="kyc_type">
+                                                        <%= data.kyc_type %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.ase_email %>"
+                                                            name="ase_email">
+                                                        <%= data.ase_email %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.ase_employee_code %>"
+                                                            name="ase_employee_code">
+                                                        <%= data.ase_employee_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.ase_name %>"
+                                                            name="ase_name">
+                                                        <%= data.ase_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.aw_code %>" name="aw_code">
+                                                        <%= data.aw_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.aw_name %>" name="aw_name">
+                                                        <%= data.aw_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.awsm_code %>"
+                                                            name="awsm_code">
+                                                        <%= data.awsm_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.awsm_name %>"
+                                                            name="awsm_name">
+                                                        <%= data.awsm_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.beneficiary_name %>"
+                                                            name="beneficiary_name">
+                                                        <%= data.beneficiary_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.address %>" name="address">
+                                                        <%= data.address %>
+                                                    </td>
+
+                                                    <td>
+
+
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.awsm_photo %>"
+                                                                onclick="getImage(this);">
+                                                            <input type="hidden" name="photo"
+                                                                value="<%= data.awsm_photo %>">
+                                                        </p>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.bank_account_no %>"
+                                                            name="bank_account_no">
+                                                        <%= data.bank_account_no %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.ifsc_code %>"
+                                                            name="ifsc_code">
+                                                        <%= data.ifsc_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.cheque_image %>"
+                                                                onclick="getImage(this);">
+                                                            <input type="hidden" name="cheque_image"
+                                                                value="<%= data.cheque_image %>">
+                                                        </p>
+                                                    </td>
+                                                    <input type="hidden" name="cheque_image"
+                                                        value="<%= data.cheque_image %>">
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.bank_name %>"
+                                                            name="bank_name">
+                                                        <%= data.bank_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.photo_id %>"
+                                                                onclick="getImage(this);">
+                                                            <input type="hidden" name="photo_id"
+                                                                value="<%= data.photo_id %>">
+                                                        </p>
+                                                    </td>
+                                                    <input type="hidden" name="photo_id" value="<%= data.photo_id %>">
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.bio_status %>"
+                                                            name="bio_status">
+                                                        <%= data.bio_status %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.mobile_no %>"
+                                                            name="mobile_no">
+                                                        <%= data.mobile_no %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.calling_count %>"
+                                                            name="calling_count">
+                                                        <%= data.calling_count %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.calling_status %>"
+                                                            name="calling_status">
+                                                        <%= data.calling_status %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.calling_remarks %>"
+                                                            name="validation_remark">
+                                                        <%= data.calling_remarks %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.status %>"
+                                                            name="kyc_status">
+                                                        <%= data.status %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.kyc_rejection_reason %>"
+                                                            name="kyc_rejection_reason">
+                                                        <%= data.kyc_rejection_reason %>
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="hidden" value="<%= data.channel %>"
+                                                            name="channel_type">
+                                                        <%= data.channel %>
+                                                    </td>
+
+                                                    <td data-order="1000">
+                                                        <input type="hidden" value="<%= data.replace_date %>"
+                                                            name="replace_date">
+                                                        <%= data.replace_date %>
+                                                    </td>
+                                                    <td class="d-flex">
+                                                        <button id="editButton-<%= data.kyc_id %>" type="button"
+                                                            onclick="toggleButtons('<%=data.kyc_id%>')"
+                                                            class="btn btn-shadow bg-mean-fruit custom-button dt-buttons btn-lg">
+                                                            <i class="fa fa-pencil"
+                                                                style="font-size:16px;color:DARK;">Restore</i>
+                                                        </button>
+                                                        <button id="saveButton-<%= data.kyc_id %>" type="submit"
+                                                            style="display: none;" class="btn border mr-2">Save</button>
+                                                        <button id="cancelButton-<%= data.kyc_id %>" type="button"
+                                                            style="display: none;" class="btn border"
+                                                            onclick="cancelButtonClick('<%=data.kyc_id%>', '<%=data.history_id%>')">Cancel</button>
+                                                    </td>
+                                                </tr>
+
+                                            </form>
+                                        </tbody>
+                                        <%})%>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <%} else {%>
+            <div class="row">
+
+                <div class="col-md-12 col-lg-12 mx-auto">
+
+                    <div class="mb-3 ">
+
+                        <div class="card">
+
+                            <div class="card-header-tab card-header-tab-animation card-header">
+
+                                <div class="row">
+
+                                    <div class=" col-lg-6 col-md-6  col-12">
+
+                                        <h5><b>SELECT REPORT TYPE</b></h5>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-lg-6 col-12 text-right">
+
+                                        <button class="btn btn-outline-alternate  custom-button  "><i
+                                                class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download
+
+                                            Latest Date</button>
+
+                                        <button class="btn btn-outline-alternate  custom-button  mr-3"><i
+                                                class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download
+
+                                            Old Date</button>
+
+                                        <button class="btn-shadow  btn btn-primary custom-btn btn-lg "
+                                            data-toggle="collapse" data-target=""><i
+                                                class='fas fa-filter mr-2'></i>Filter</button>
+                                    </div>
+
+                                    <div class="mt-3 px-xl-2  col-12">
+
+                                        <div>
+
+                                            <a class="mt-2" href="./kyc">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                Kyc
+
+                                            </a>
+
+                                            <a class="mt-2" href="./edit-kyc-data">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                EDIT KYC DATA
+
+                                            </a>
+
+                                            <a class="mt-2" href="./authentication">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                AUTHENTICATION
+
+                                            </a>
+
+                                            <a class="mt-2" href="./payout">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                PAYOUT
+
+                                            </a>
+
+                                            <a class="mt-2" href="./kyc-history">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                KYC History
+
+                                            </a>
+
+                                            <a class="mt-2" href="./master-data">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                MASTER DATA
+
+                                            </a>
+
+                                            <a class="mt-2" href="./kyc-status">
+
+                                                <img src="./images/off.png" alt="">
+
+                                                KYC STATUS
+
+                                            </a>
+
+                                            <a class="mt-2" href="./awsm-updation">
+
+                                                <img src="./images/on.png" alt="">AWSM UPDATION</a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="card-body">
+
+
+
+
+
+                                <div id="demo" class="collapse">
+
+                                    <form action="./awsm-updation">
+
+                                        <div class="row">
+
+
+
+                                            <div class="col-2">
+
+                                                <label for="AWSM-ID" class="mr-sm-2">AWSM ID</label>
+
+                                                <input type="text" class="form-control" id="awsm_code"
+                                                    placeholder="AWSM ID" name="awsm_code"
+                                                    value="<%=QueryData.awsm_code %>">
+
+                                            </div>
+
+                                            <div class="col-2 ">
+
+                                                <label for="FROM" class="mr-sm-2">FROM (REPLACE DATE)</label>
+
+                                                <input type="date" class="form-control" id="fromDate" placeholder="FROM"
+                                                    name="fromDate" value="<%=QueryData.fromDate %>">
+
+                                            </div>
+
+                                            <div class="col-2 ">
+
+                                                <label for="TO" class="mr-sm-2">TO (REPLACE DATE)</label>
+
+                                                <input type="date" class="form-control" id="toDate" placeholder="TO"
+                                                    name="toDate" value="<%=QueryData.toDate %>">
+
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="text-right mb-3">
+
+                                            <a href="./awsm-updation"
+                                                class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</a>
+                                            <!-- <button type="reset"
+                                                class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</button> -->
+                                            <button type="submit"
+                                                class="btn-shadow  btn btn-primary custom-btn  btn-lg mt-3">Apply</button>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <br>
+
+                                <h5>Latest Data </h5>
+
+                                <div>
+
+                                    <table id="example" class="table table-striped table-bordered table-responsive"
+                                        cellspacing="0">
+
+                                        <thead>
+
+
+
+                                            <tr>
+
+                                                <th class="tabel-width">KYC TYPE</th>
+
+                                                <th class="tabel-width">ASE EMAIL ID</th>
+
+                                                <th class="tabel-width">ASE ID</th>
+
+                                                <th class="tabel-width">ASE NAME</th>
+
+                                                <th class="tabel-width">AW ID</th>
+
+                                                <th class="tabel-width">AW NAME</th>
+
+                                                <th class="tabel-width">AWSM ID</th>
+
+                                                <th class="tabel-width">AWSM NAME</th>
+
+                                                <th class="tabel-width">BENEFICIARY NAME</th>
+
+                                                <th class="tabel-width">ADDRESS</th>
+
+                                                <th class="tabel-width">AWSM PHOTO</th>
+
+                                                <th class="tabel-width">BANK A/C NO.</th>
+
+                                                <th class="tabel-width">IFSC CODE</th>
+
+                                                <th class="tabel-width">CHEQUE IMAGE</th>
+
+                                                <th class="tabel-width">BANK NAME</th>
+
+                                                <th class="tabel-width">PHOTO ID IMAGE</th>
+
+                                                <th class="tabel-width">BIOMETRIC STATUS</th>
+
+                                                <th class="tabel-width">MOBILE NO</th>
+
+                                                <th class="tabel-width">CALLING COUNT</th>
+
+                                                <th class="tabel-width">CALLING STATUS</th>
+
+                                                <th class="tabel-width">VALIDATION CALLING REMARK</th>
+
+                                                <th class="tabel-width">KYC STATUS</th>
+
+                                                <th class="tabel-width">KYC REJECTION REASON</th>
+
+                                                <th class="tabel-width">CHANNEL TYPE</th>
+
+                                                <th class="tabel-width">REPLACE DATE</th>
+
+                                            </tr>
+
+                                        </thead>
+
+
+                                        <% awsmLatest.forEach((data)=> {%>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <%= data.kyc_type %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.ase_email %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.ase_employee_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.ase_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.aw_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.aw_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.awsm_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.awsm_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.beneficiary_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.address %>
+                                                    </td>
+
+                                                    <td>
+
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.awsm_photo %>"
+                                                                onclick="getImage(this);">
+
+                                                        </p>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.bank_account_no %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.ifsc_code %>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.cheque_image %>"
+                                                                onclick="getImage(this);">
+
+                                                        </p>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.bank_name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <p class="tabel-img">
+
+                                                            <img width="100" height="50" src="<%= data.photo_id %>"
+                                                                onclick="getImage(this);">
+
+                                                        </p>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.biometric_status? data.biometric_status : '' %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.mobile_no %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.calling_count %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.calling_status %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.validation_remark %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.status %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.calling_remarks %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= data.channel %>
+                                                    </td>
+
+                                                    <td data-order="1000">
+                                                        <%= data.update_timestamp.toLocaleDateString('en-IN')%>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <%})%>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card mt-3">
+
+                            <div class="card-body">
+
+                                <h5>OLD DATA
+
+                                </h5>
+
+                                <div>
+
+                                    <table id="example1" class="table table-striped table-bordered table-responsive"
+                                        cellspacing="0">
+
+                                        <thead>
+
+
+
+                                            <tr>
+
+                                                <th class="tabel-width">KYC TYPE</th>
+
+                                                <th class="tabel-width">ASE EMAIL ID</th>
+
+                                                <th class="tabel-width">ASE ID</th>
+
+                                                <th class="tabel-width">ASE NAME</th>
+
+                                                <th class="tabel-width">AW ID</th>
+
+                                                <th class="tabel-width">AW NAME</th>
+
+                                                <th class="tabel-width">AWSM ID</th>
+
+                                                <th class="tabel-width">AWSM NAME</th>
+
+                                                <th class="tabel-width">BENEFICIARY NAME</th>
+
+                                                <th class="tabel-width">ADDRESS</th>
+
+                                                <th class="tabel-width">AWSM PHOTO</th>
+
+                                                <th class="tabel-width">BANK A/C NO.</th>
+
+                                                <th class="tabel-width">IFSC CODE</th>
+
+                                                <th class="tabel-width">CHEQUE IMAGE</th>
+
+                                                <th class="tabel-width">BANK NAME</th>
+
+                                                <th class="tabel-width">PHOTO ID IMAGE</th>
+
+                                                <th class="tabel-width">BIOMETRIC STATUS</th>
+
+                                                <th class="tabel-width">MOBILE NO</th>
+
+                                                <th class="tabel-width">CALLING COUNT</th>
+
+                                                <th class="tabel-width">CALLING STATUS</th>
+
+                                                <th class="tabel-width">VALIDATION CALLING REMARK</th>
+
+                                                <th class="tabel-width">KYC STATUS</th>
+
+                                                <th class="tabel-width">KYC REJECTION REASON</th>
+
+                                                <th class="tabel-width">CHANNEL TYPE</th>
+
+                                                <th class="tabel-width">REPLACE DATE</th>
+
+                                                <th class="tabel-width">RESTORE</th>
+
+
+
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <% awsmOld.forEach((data)=> {%>
+
+                                            <tbody>
+                                                <form
+                                                    action="./awsm-updation/awsm-updation-restore?kyc_id=<%=data.kyc_id%>&history_id=<%=data.history_id%>"
+                                                    method="post">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" type="hidden"
+                                                                value="<%= data.kyc_type %>" name="kyc_type">
+                                                            <%= data.kyc_type %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.ase_email %>"
+                                                                name="ase_email">
+                                                            <%= data.ase_email %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.ase_employee_code %>"
+                                                                name="ase_employee_code">
+                                                            <%= data.ase_employee_code %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.ase_name %>"
+                                                                name="ase_name">
+                                                            <%= data.ase_name %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.aw_code %>"
+                                                                name="aw_code">
+                                                            <%= data.aw_code %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.aw_name %>"
+                                                                name="aw_name">
+                                                            <%= data.aw_name %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.awsm_code %>"
+                                                                name="awsm_code">
+                                                            <%= data.awsm_code %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.awsm_name %>"
+                                                                name="awsm_name">
+                                                            <%= data.awsm_name %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.beneficiary_name %>"
+                                                                name="beneficiary_name">
+                                                            <%= data.beneficiary_name %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.address %>"
+                                                                name="address">
+                                                            <%= data.address %>
+                                                        </td>
+
+                                                        <td>
+
+
+                                                            <p class="tabel-img">
+
+                                                                <img width="100" height="50"
+                                                                    src="<%= data.awsm_photo %>"
+                                                                    onclick="getImage(this);">
+                                                                <input type="hidden" name="photo"
+                                                                    value="<%= data.awsm_photo %>">
+                                                            </p>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.bank_account_no %>"
+                                                                name="bank_account_no">
+                                                            <%= data.bank_account_no %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.ifsc_code %>"
+                                                                name="ifsc_code">
+                                                            <%= data.ifsc_code %>
+                                                        </td>
+
+                                                        <td>
+                                                            <p class="tabel-img">
+
+                                                                <img width="100" height="50"
+                                                                    src="<%= data.cheque_image %>"
+                                                                    onclick="getImage(this);">
+                                                                <input type="hidden" name="cheque_image"
+                                                                    value="<%= data.cheque_image %>">
+                                                            </p>
+                                                        </td>
+                                                        <input type="hidden" name="cheque_image"
+                                                            value="<%= data.cheque_image %>">
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.bank_name %>"
+                                                                name="bank_name">
+                                                            <%= data.bank_name %>
+                                                        </td>
+
+                                                        <td>
+                                                            <p class="tabel-img">
+
+                                                                <img width="100" height="50" src="<%= data.photo_id %>"
+                                                                    onclick="getImage(this);">
+                                                                <input type="hidden" name="photo_id"
+                                                                    value="<%= data.photo_id %>">
+                                                            </p>
+                                                        </td>
+                                                        <input type="hidden" name="photo_id"
+                                                            value="<%= data.photo_id %>">
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.bio_status %>"
+                                                                name="bio_status">
+                                                            <%= data.bio_status %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.mobile_no %>"
+                                                                name="mobile_no">
+                                                            <%= data.mobile_no %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.calling_count %>"
+                                                                name="calling_count">
+                                                            <%= data.calling_count %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.calling_status %>"
+                                                                name="calling_status">
+                                                            <%= data.calling_status %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.calling_remarks %>"
+                                                                name="validation_remark">
+                                                            <%= data.calling_remarks %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.status %>"
+                                                                name="kyc_status">
+                                                            <%= data.status %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden"
+                                                                value="<%= data.kyc_rejection_reason %>"
+                                                                name="kyc_rejection_reason">
+                                                            <%= data.kyc_rejection_reason %>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="hidden" value="<%= data.channel %>"
+                                                                name="channel_type">
+                                                            <%= data.channel %>
+                                                        </td>
+
+                                                        <td data-order="1000">
+                                                            <input type="hidden" value="<%= data.replace_date %>"
+                                                                name="replace_date">
+                                                            <%= data.replace_date %>
+                                                        </td>
+                                                        <td class="d-flex">
+                                                            <button type="button"
+                                                                onclick="toggleButtons('<%=data.kyc_id%>')"
+                                                                class="btn btn-shadow bg-mean-fruit custom-button dt-buttons btn-lg">
+                                                                <i class="fa fa-pencil"
+                                                                    style="font-size:16px;color:DARK;">Restore</i>
+                                                            </button>
+                                                            <button id="saveButton-<%= data.kyc_id %>" type="submit"
+                                                                style="display: none;"
+                                                                class="btn border mr-2">Save</button>
+                                                            <button id="cancelButton-<%= data.kyc_id %>" type="submit"
+                                                                style="display: none;"
+                                                                class="btn border">Cancel</button>
+                                                        </td>
+                                                    </tr>
+
+                                                </form>
+                                            </tbody>
+                                            <%})%>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <% } %>
+
+                <div class="modal" id="imageModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog  modal-top " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" onclick="modal_close()" data-bs-dismiss="modal"
+                                    fdprocessedid="n6zi5o">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <img class="modal-content1" id="getImage-id" width="100px">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function getImage(data) {
+
+                        let image = data.src;
+                        let element = document.getElementById('getImage-id');
+                        element.setAttribute('src', image)
+                        let image_modal = document.getElementById('imageModal');
+
+                        image_modal.style.display = "block";
+
+
+                    }
+                    function modal_close() {
+                        let image_modal = document.getElementById('imageModal');
+                        image_modal.style.display = "none";
+                    }
+                </script>
+
+                <script>
+                    function cancelButtonClick(kyc_id, history_id) {
+                        toggleButtons(kyc_id);
+                        event.preventDefault();
+                    }
+                </script>
+
+                <script>
+                    function fnExcelReport(file, awsm_code, fromDate, toDate) {
+
+                        fetch(`/awsm-updation/latest/export?awsm_code=${awsm_code}&fromDate=${fromDate}&toDate=${toDate}`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                data.forEach((item) => {
+                                    item.dob = formatDate(item.dob);
+                                    item.created_on = formatDate(item.created_on);
+                                    item.insert_timestamp = formatDate(item.insert_timestamp);
+                                    item.update_timestamp = formatDate(item.update_timestamp);
+                                    item.approved_on = formatDate(item.approved_on);
+                                    item.approved_kyc_edit_on = formatDate(item.approved_kyc_edit_on);
+                                    item.replace_kyc_edit_on = formatDate(item.replace_kyc_edit_on);
+                                    item.re_kyc_edit_on = formatDate(item.re_kyc_edit_on);
+                                    item.bank_account_no = formatBankAccount(item.bank_account_no);
+                                });
+
+                                const csvContent = latestCreateCSV(data);
+
+                                var element = document.createElement('a');
+                                element.setAttribute('href', 'data:csv;charset=utf-8, ' + encodeURIComponent(csvContent));
+                                element.setAttribute('download', file);
+
+                                document.body.appendChild(element);
+
+                                element.click();
+
+                                document.body.removeChild(element);
+                            });
+                    }
+
+                    function formatDate(dateString) {
+                        const date = new Date(dateString);
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        return `${year}-${month}-${day}`;
+                    }
+
+                    function formatBankAccount(accountNumber) {
+                        return accountNumber.match(/.{1,4}/g).join(' ');
+                    }
+
+                    function latestCreateCSV(data) {
+
+                        const headers = [
+                            "KYC TYPE",
+                            "ASE EMAIL ID",
+                            "ASE ID",
+                            "ASE NAME",
+                            "AW ID",
+                            "AW NAME",
+                            "AWSM ID",
+                            "AWSM NAME",
+                            "BENEFICIARY NAME",
+                            "ADDRESS",
+                            "AWSM PHOTO",
+                            "BANK A/C NO.",
+                            "IFSC CODE",
+                            "CHEQUE IMAGE",
+                            "BANK NAME",
+                            "PHOTO ID IMAGE",
+                            "BIOMETRIC STATUS",
+                            "MOBILE NO",
+                            "CALLING COUNT",
+                            "CALLING STATUS",
+                            "VALIDATION REMARK",
+                            "KYC STATUS",
+                            "KYC REJECTION REASON",
+                            "CHANNEL TYPE",
+                            "REPLACE DATE",
+                        ]
+
+                        const flattenData = data.map(item => ({
+
+                            "KYC TYPE": "Replace-KYC-Request",
+                            "ASE EMAIL ID": item.ase_email,
+                            "ASE ID": item.ase_employee_code,
+                            "ASE NAME": item.ase_name,
+                            "AW ID": item.aw_code,
+                            "AW NAME": item.aw_name,
+                            "AWSM ID": item.awsm_code,
+                            "AWSM NAME": item.awsm_name,
+                            "BENEFICIARY NAME": item.beneficiary_name,
+                            "ADDRESS": item.address,
+                            "AWSM PHOTO": item.photo,
+                            "BANK A/C NO.": item.bank_account_no,
+                            "IFSC CODE": item.ifsc_code,
+                            "CHEQUE IMAGE": item.bank_cheque,
+                            "BANK NAME": item.bank_name,
+                            "PHOTO ID IMAGE": item.photo_id,
+                            "BIOMETRIC STATUS": item.bio_status,
+                            "MOBILE NO": item.mobile_no,
+                            "CALLING COUNT": item.calling_count,
+                            "CALLING STATUS": item.calling_status,
+                            "VALIDATION REMARK": item.calling_remarks,
+                            "KYC STATUS": item.status,
+                            "KYC REJECTION REASON": item.wip_remarks,
+                            "CHANNEL TYPE": item.channel,
+                            "REPLACE DATE": item.update_timestamp
+
+                        }));
+
+                        const replacer = (key, value) => (value === null ? "" : value);
+                        const csvContent = [headers.join(","), ...flattenData.map(row => headers.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(","))].join("\r\n");
+                        return csvContent;
+
+                        // const replacer = (key, value) => value === null ? '' : value;
+                        // const header = Object.keys(data[0])
+                        // const csvContent = [
+                        //     header.join(','),
+                        //     ...data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+                        // ].join('\r\n');
+                        // return csvContent;
+                    }
+
+                    document.getElementById("btnExport")
+                        .addEventListener("click", function () {
+                            var filename = "latest_awsm_updation.csv";
+                            var awsm_code = document.getElementById("awsm_code").value;
+                            var fromDate = document.getElementById("fromDate").value;
+                            var toDate = document.getElementById("toDate").value;
+                            fnExcelReport(filename, awsm_code, fromDate, toDate);
+                        }, false);
+                </script>
+
+                <script>
+                    function fnExcelReportOld(file) {
+                        fetch(`/awsm-updation/old/export`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                data.forEach((item) => {
+                                    item.dob = formatDate(item.dob);
+                                    item.created_on = formatDate(item.created_on);
+                                    item.insert_timestamp = formatDate(item.insert_timestamp);
+                                    item.update_timestamp = formatDate(item.update_timestamp);
+                                    item.approved_on = formatDate(item.approved_on);
+                                    item.approved_kyc_edit_on = formatDate(item.approved_kyc_edit_on);
+                                    item.replace_kyc_edit_on = formatDate(item.replace_kyc_edit_on);
+                                    item.re_kyc_edit_on = formatDate(item.re_kyc_edit_on);
+                                    item.bank_account_no = formatBankAccount(item.bank_account_no);
+                                });
+
+                                const csvContent = createCSV(data);
+
+                                var element = document.createElement('a');
+                                element.setAttribute('href', 'data:csv;charset=utf-8, ' + encodeURIComponent(csvContent));
+                                element.setAttribute('download', file);
+
+                                document.body.appendChild(element);
+
+                                element.click();
+
+                                document.body.removeChild(element);
+                            });
+                    }
+
+                    function formatDate(dateString) {
+                        const date = new Date(dateString);
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        return `${year}-${month}-${day}`;
+                    }
+
+                    function formatBankAccount(accountNumber) {
+                        return accountNumber.match(/.{1,4}/g).join(' ');
+                    }
+
+                    function createCSV(data) {
+
+
+                        const headers = [
+                            "KYC TYPE",
+                            "ASE EMAIL ID",
+                            "ASE ID",
+                            "ASE NAME",
+                            "AW ID",
+                            "AW NAME",
+                            "AWSM ID",
+                            "AWSM NAME",
+                            "BENEFICIARY NAME",
+                            "ADDRESS",
+                            "AWSM PHOTO",
+                            "BANK A/C NO.",
+                            "IFSC CODE",
+                            "CHEQUE IMAGE",
+                            "BANK NAME",
+                            "PHOTO ID IMAGE",
+                            "BIOMETRIC STATUS",
+                            "MOBILE NO",
+                            "CALLING COUNT",
+                            "CALLING STATUS",
+                            "VALIDATION REMARK",
+                            "KYC STATUS",
+                            "KYC REJECTION REASON",
+                            "CHANNEL TYPE",
+                            "REPLACE DATE",
+                        ]
+
+                        const flattenData = data.map(item => ({
+
+                            "KYC TYPE": item.kyc_type,
+                            "ASE EMAIL ID": item.ase_email,
+                            "ASE ID": item.ase_employee_code,
+                            "ASE NAME": item.ase_name,
+                            "AW ID": item.aw_code,
+                            "AW NAME": item.aw_name,
+                            "AWSM ID": item.awsm_code,
+                            "AWSM NAME": item.awsm_name,
+                            "BENEFICIARY NAME": item.beneficiary_name,
+                            "ADDRESS": item.address,
+                            "AWSM PHOTO": item.photo,
+                            "BANK A/C NO.": item.bank_account_no,
+                            "IFSC CODE": item.ifsc_code,
+                            "CHEQUE IMAGE": item.bank_cheque,
+                            "BANK NAME": item.bank_name,
+                            "PHOTO ID IMAGE": item.photo_id,
+                            "BIOMETRIC STATUS": item.bio_status,
+                            "MOBILE NO": item.mobile_no,
+                            "CALLING COUNT": item.calling_count,
+                            "CALLING STATUS": item.calling_status,
+                            "VALIDATION REMARK": item.wip_remarks,
+                            "KYC STATUS": item.status,
+                            "KYC REJECTION REASON": "",
+                            "CHANNEL TYPE": item.channel,
+                            "REPLACE DATE": item.update_timestamp
+
+                        }));
+
+                        const replacer = (key, value) => (value === null ? "" : value);
+                        const csvContent = [headers.join(","), ...flattenData.map(row => headers.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(","))].join("\r\n");
+                        return csvContent;
+
+
+                        // const replacer = (key, value) => value === null ? '' : value;
+                        // const header = Object.keys(data[0])
+                        // const csvContent = [
+                        //     header.join(','),
+                        //     ...data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+                        // ].join('\r\n');
+                        // return csvContent;
+                    }
+
+                    document.getElementById("btnExportOld")
+                        .addEventListener("click", function () {
+                            var filename = "old_awsm_updation.csv";
+                            fnExcelReportOld(filename);
+                        }, false);
+                </script>
+
+                <script>
+                    function toggleButtons(kyc_id) {
+                        var editButton = document.getElementById("editButton-" + kyc_id);
+                        var saveButton = document.getElementById("saveButton-" + kyc_id);
+                        var cancelButton = document.getElementById("cancelButton-" + kyc_id);
+
+                        if (editButton.style.display === "none") {
+                            editButton.style.display = "block";
+                            saveButton.style.display = "none";
+                            cancelButton.style.display = "none";
+                        } else {
+                            editButton.style.display = "none";
+                            saveButton.style.display = "block";
+                            cancelButton.style.display = "block";
+                        }
+                    }
+                </script>
+
+
+
+                <%- include("../shared/footer"); %>
