@@ -178,69 +178,86 @@
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
 
-                            <!-- <li>
-                                <a href="/dashboard/dashboard" class="mm-active">
-                                    <i class="metismenu-icon fa fa-home"></i>
-                                    Dashboard
-                                </a>
-                            </li> -->
-                            <li>
-                                <a href="/kyc">
-                                    <i class="metismenu-icon fas fa-sort-amount-up"></i>
-                                    Program Performance
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/upload-payout">
-                                    <i class="metismenu-icon fa fa-cloud-upload "></i>
-                                    Upload Payout
-                                </a>
-                            </li>
-
                             <% if(user.role==='admin' ){%>
                                 <li>
-                                    <a href="/data-whitelisting">
-                                        <i class="metismenu-icon fas fa-clone "></i>
-                                        Data Whitelisting
+                                    <a href="/dashboard" class="mm-activew">
+                                        <i class="metismenu-icon fa fa-home"></i>
+                                        Dashboard
                                     </a>
                                 </li>
                                 <%} else{%>
-                                    <li>
-                                        <a>
-                                            <i class="metismenu-icon fas fa-clone "></i>
-                                            Data Whitelisting
-                                        </a>
-                                    </li>
+
                                     <%} %>
-                                        <!-- <li>
+
+                                        <li>
+                                            <a href="/kyc">
+                                                <i class="metismenu-icon fas fa-sort-amount-up"></i>
+                                                Program Performance
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/upload-payout">
+                                                <i class="metismenu-icon fa fa-cloud-upload "></i>
+                                                Upload Payout
+                                            </a>
+                                        </li>
+
+                                        <% if(user.role==='admin' ){%>
+                                            <li>
+                                                <a href="/data-whitelisting">
+                                                    <i class="metismenu-icon fas fa-clone "></i>
+                                                    DSR Data Whitelisting
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/retailerwhitelisting">
+                                                    <i class="metismenu-icon fas fa-clone "></i>
+                                                    Retailer Data whitelisting
+                                                </a>
+                                            </li>
+                                            <%} else{%>
+                                                <li>
+                                                    <a>
+                                                        <i class="metismenu-icon fas fa-clone "></i>
+                                                        DSR Data Whitelisting
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <i class="metismenu-icon fas fa-clone "></i>
+                                                        Retailer Data whitelisting
+                                                    </a>
+                                                </li>
+                                                <%} %>
+                                                    <!-- <li>
                                 <a href="/block-ase-user-report">
                                     <i class="metismenu-icon fas fa-clone "></i>
                                     Blocked ASE User Report
                                 </a>
                             </li> -->
-                                        <!-- <li>
+                                                    <!-- <li>
                                             <a href="/report">
                                                 <i class="metismenu-icon fa fa fa-file"></i>
                                                 Report
                                             </a>
                                         </li> -->
 
-                                        <% if( user.role==='admin' ){%>
-                                            <li>
-                                                <a href="/users">
-                                                    <i class="metismenu-icon fas fa-clone "></i>
-                                                    Users
-                                                </a>
-                                            </li>
-                                            <%}%>
+                                                    <% if( user.role==='admin' ){%>
+                                                        <li>
+                                                            <a href="/users">
+                                                                <i class="metismenu-icon fas fa-clone "></i>
+                                                                Users
+                                                            </a>
+                                                        </li>
+                                                        <%}%>
 
-                                                <li>
-                                                    <a href="./account/user-logout">
-                                                        <i class="metismenu-icon fa fa-sign-out"></i>
-                                                        Logout
-                                                    </a>
-                                                </li>
+                                                            <li>
+                                                                <a href="./account/user-logout">
+                                                                    <i class="metismenu-icon fa fa-sign-out"></i>
+                                                                    Logout
+                                                                </a>
+                                                            </li>
                         </ul>
                     </div>
                 </div>

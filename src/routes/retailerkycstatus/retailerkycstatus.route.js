@@ -6,6 +6,7 @@ const { getNotification } = require('../../util/notify');
 
 const router = express.Router();
 router.route('/').get(userAuth, getDetails, getNotification, retailerkycstatusController.retailerkycstatusView);
+router.route('/export').get(userAuth, getDetails, retailerkycstatusController.exportKYCStatusData);
 
 
 module.exports = router;

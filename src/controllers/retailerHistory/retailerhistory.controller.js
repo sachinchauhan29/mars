@@ -1,4 +1,4 @@
-const { selectKYCHistory, getAWSMCity, downloadHistoryAllData } = require("../../models/kyc-history.model");
+const { selectKYCHistory, getAWSMCity } = require("../../models/retailer_kycHistory.model");
 
 
 const retailerHistoryView = async (req, res, next) => {
@@ -8,7 +8,7 @@ const retailerHistoryView = async (req, res, next) => {
 }
 
 const exportKYCHistoryData = async (req, res) => {
-    let KYCHistoryData = await downloadHistoryAllData(req.query);
+    let KYCHistoryData = await selectKYCHistory(req.query);
     res.send(KYCHistoryData)
 }
 

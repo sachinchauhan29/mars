@@ -32,6 +32,7 @@ const dbCon = require('../config/db');
 const getUploadRecords = async () => {
   let query = `SELECT * FROM file_process ORDER BY insert_datetime DESC LIMIT 10`;
 
+  console.log('hhj', query);
   return new Promise((resolve, reject) => {
     dbCon.query(query, (error, result) => {
       if (error) {

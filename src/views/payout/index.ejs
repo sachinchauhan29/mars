@@ -1,412 +1,337 @@
 <%- include("../shared/header"); %>
 
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <!-- <div class="page-title-icon">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+        <!-- <div class="page-title-icon">
                     <i class=" fas fa-sort-amount-up icon-gradient bg-mean-fruit">
                     </i>
                 </div> -->
-                <div>
-                    <b> PAYOUT</b>
-                </div>
-            </div>
-
+        <div>
+          <b> PAYOUT</b>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-md-12 col-lg-12 mx-auto">
-            <div class="mb-3 ">
-                <div class="card">
-                    <div class="card-header-tab card-header-tab-animation card-header">
-                        <div class="row">
-                            <div class=" col-lg-8 col-md-8  col-12">
-                                <h5><b>SELECT REPORT TYPE</b></h5>
-                            </div>
-                            <div class="col-lg-4 col-lg-4 col-12 text-right">
-                                <button id="btnExport" class="btn  btn-outline-alternate custom-button  mr-3"><i
-                                        class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download</button>
-                                <button class="btn-shadow  btn btn-primary custom-btn  btn-lg" data-toggle="collapse"
-                                    data-target="#demo"><i class='fas fa-filter mr-2'></i>Filter</button>
-                            </div>
-                            <div class="mt-3 px-xl-2 col-12">
-                                <div class="dis-grid">
-                                    <a class="mt-2" href="./kyc">
-                                        <img src="./images/off.png" alt="">
-                                        DSR Kyc
-                                    </a>
-                                    <a class="mt-2" href="./edit-kyc-data">
-                                        <img src="./images/off.png" alt="">
-                                        DSR EDIT KYC
-                                    </a>
-                                    <a class="mt-2" href="./retailer">
-                                        <img src="./images/off.png" alt="">
-                                        RETAILER KYC
-                                    </a>
-                                    <!-- <a class="mt-2" href="./retailer-edit-kyc">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 mx-auto">
+      <div class="mb-3">
+        <div class="card">
+          <div class="card-header-tab card-header-tab-animation card-header">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-12">
+                <h5><b>SELECT REPORT TYPE</b></h5>
+              </div>
+              <div class="col-lg-4 col-lg-4 col-12 text-right">
+                <button id="btnExport" class="btn btn-outline-alternate custom-button mr-3">
+                  <i class="metismenu-icon fas fa-arrow-alt-circle-down mr-2"></i>Download
+                </button>
+                <button class="btn-shadow btn btn-primary custom-btn btn-lg" data-toggle="collapse" data-target="#demo">
+                  <i class="fas fa-filter mr-2"></i>Filter
+                </button>
+              </div>
+              <div class="mt-3 px-xl-2 col-12">
+                <div class="dis-grid">
+                  <a class="mt-2" href="./kyc">
+                    <img src="./images/off.png" alt="" />
+                    DSR Kyc
+                  </a>
+                  <a class="mt-2" href="./edit-kyc-data">
+                    <img src="./images/off.png" alt="" />
+                    DSR EDIT KYC
+                  </a>
+                  <a class="mt-2" href="./retailer">
+                    <img src="./images/off.png" alt="" />
+                    RETAILER KYC
+                  </a>
+                  <!-- <a class="mt-2" href="./retailer-edit-kyc">
                                         <img src="./images/off.png" alt="">
                                         RETAILER EDIT KYC
                                     </a> -->
-                                    <a class="mt-2" href="./distributor">
-                                        <img src="./images/off.png" alt="">
-                                        DISTRIBUTOR KYC
-                                    </a>
-                                    <a class="mt-2" href="./authentication">
-                                        <img src="./images/off.png" alt="">
-                                        DSR ATTENDANCE
-                                    </a>
-                                    <a class="mt-2" href="./payout">
-                                        <img src="./images/on.png" alt="">
-                                        DSR PAYOUT
-                                    </a>
-                                    <a class="mt-2" href="./kyc-history">
-                                        <img src="./images/off.png" alt="">
-                                        DSR KYC History</a>
-                                    <a class="mt-2" href="./retailer-history">
-                                        <img src="./images/off.png" alt="">
-                                        RETAILER KYC History
-                                    </a>
-                                    <a class="mt-2" href="./master-data">
-                                        <img src="./images/off.png" alt="">
-                                        MASTER DATA
-                                    </a>
-                                    <a class="mt-2" href="./kyc-status">
-                                        <img src="./images/off.png" alt="">
-                                        KYC STATUS
-                                    </a>
-                                    <!-- <a class="mt-2" href="./awsm-updation">
+                  <a class="mt-2" href="./distributor">
+                    <img src="./images/off.png" alt="" />
+                    DISTRIBUTOR KYC
+                  </a>
+                  <a class="mt-2" href="./dsr_attendance">
+                    <img src="./images/off.png" alt="" />
+                    DSR ATTENDANCE
+                  </a>
+                  <a class="mt-2" href="./payout">
+                    <img src="./images/on.png" alt="" />
+                    DSR PAYOUT
+                  </a>
+                  <a class="mt-2" href="./kyc-history">
+                    <img src="./images/off.png" alt="" />
+                    DSR KYC History</a>
+                  <a class="mt-2" href="./retailer-history">
+                    <img src="./images/off.png" alt="" />
+                    RETAILER KYC History
+                  </a>
+                  <a class="mt-2" href="./master-data">
+                    <img src="./images/off.png" alt="" />
+                    MASTER DATA
+                  </a>
+                  <a class="mt-2" href="./kyc-status">
+                    <img src="./images/off.png" alt="" />
+                    KYC STATUS
+                  </a>
+                  <!-- <a class="mt-2" href="./awsm-updation">
                                         <img src="./images/off.png" alt="">
                                         AWSM UPDATION
                                     </a> -->
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-
-
-                        <div id="demo" class="collapse">
-                            <form action="./payout">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <label for="Mobile" class="mr-sm-2">Mobile Number</label>
-                                        <input type="tel" maxlength="10" class="form-control" id="mobile_no"
-                                            placeholder="Mobile" name="Mobile" value="<%=QueryData.Mobile %>">
-                                    </div>
-                                    <div class="col-2">
-                                        <label for="salesman_id" class="mr-sm-2">DSR ID</label>
-                                        <input type="text" class="form-control" id="awsm_code" placeholder="dsr_id"
-                                            name="salesman_id" value="<%=QueryData.salesman_id %>">
-                                    </div>
-                                    <div class="col-2">
-                                        <label for="salesman_name" class="mr-sm-2">DSR NAME</label>
-                                        <input type="text" class="form-control" id="awsm_name" placeholder="dsr_name"
-                                            name="salesman_name" value="<%=QueryData.salesman_name %>">
-                                    </div>
-                                    <div class="col-2">
-
-                                        <div class="ms-auto">
-
-                                            <label for="salesman_type">SELECT DSR TYPE</label>
-
-                                            <select name="salesman_type" class="form-control" id="salesman_type"
-                                                placeholder="salesman_type" value="<%=QueryData.salesman_type %>">
-
-                                                <option value=""> DSR Type </option>
-                                                <option value="Awsm" <%=QueryData.salesman_type==='Awsm' ? 'selected'
-                                                    : '' %>>DSR</option>
-                                                <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
-                                                    %>>SDA</option>
-                                                <option value="Psm" <%=QueryData.salesman_type==='Psm' ? 'selected' : ''
-                                                    %>>PSM</option>>
-
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-2">
-
-                                        <label for="AW-ID" class="mr-sm-2">Distributor ID</label>
-
-                                        <input type="text" class="form-control" id="aw_code"
-                                            placeholder="distributor_id" name="aw_code" value="<%=QueryData.aw_code %>">
-
-                                    </div>
-
-                                    <div class="col-2">
-
-                                        <label for="AW-NAME" class="mr-sm-2">Distributor NAME</label>
-
-                                        <input type="text" class="form-control" id="aw_name"
-                                            placeholder="distributor_name" name="aw_name"
-                                            value="<%=QueryData.aw_name %>">
-
-                                    </div>
-
-
-
-                                    <div class="col-2 mt-2">
-
-                                        <label for="ASE-CODE" class="mr-sm-2">SO CODE</label>
-
-                                        <input type="text" class="form-control" id="ase_code" placeholder="so_code"
-                                            name="ase_code" value="<%=QueryData.ase_code %>">
-
-                                    </div>
-
-                                    <div class="col-2 mt-2">
-
-                                        <label for="ASE-NAME" class="mr-sm-2">SO NAME</label>
-
-                                        <input type="text" class="form-control" id="ase_name" placeholder="so_name"
-                                            name="ase_name" value="<%=QueryData.ase_name %>">
-
-                                    </div>
-
-                                    <div class="col-2 mt-2">
-
-                                        <label for="FROM" class="mr-sm-2">FROM</label>
-
-                                        <input type="date" class="form-control" id="fromDate" placeholder="fromDate"
-                                            name="fromDate" value="<%=QueryData.fromDate %>">
-                                    </div>
-
-                                    <div class="col-2 mt-2">
-
-                                        <label for="TO" class="mr-sm-2">TO</label>
-
-                                        <input type="date" class="form-control" id="toDate" placeholder="toDate"
-                                            name="toDate" value="<%=QueryData.toDate %>">
-
-                                    </div>
-
-
-                                </div>
-                                <div class="text-right mb-3">
-                                    <button type="reset"
-                                        class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</button>
-                                    <!-- <a href="./payout"
-                                        class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</a> -->
-                                    <button type="submit"
-                                        class="btn-shadow  btn btn-primary custom-btn  btn-lg mt-3">Apply</button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="table table-striped table-bordered table-responsive dataTable no-footer">
-                            <div class="table-responsive">
-                                <table id="exampless" class="table table-striped table-bordered" cellspacing="0"
-                                    width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th class="tabel-width">SO EMAIL ID</th>
-                                            <th class="tabel-width">SO CODE</th>
-                                            <th class="tabel-width">SO NAME</th>
-                                            <th class="tabel-width">Distributor ID</th>
-                                            <th class="tabel-width">Distributor NAME</th>
-                                            <th class="tabel-width">DSR ID</th>
-                                            <th class="tabel-width">DSR NAME</th>
-                                            <th class="tabel-width">DSR TYPE</th>
-                                            <th class="tabel-width">VIKAS ID</th>
-                                            <th class="tabel-width">HQ LOCATION</th>
-                                            <th class="tabel-width">STATE NAME</th>
-                                            <th class="tabel-width">CITY NAME</th>
-                                            <th class="tabel-width">BENEFICIARY NAME</th>
-                                            <th class="tabel-width">ADDRESS</th>
-                                            <th class="tabel-width">BANK A/C NO.</th>
-                                            <th class="tabel-width">BANK NAME</th>
-                                            <th class="tabel-width">IFSC CODE</th>
-                                            <th class="tabel-width">MOBILE NO</th>
-                                            <th class="tabel-width">PAYOUT MONTH</th>
-                                            <th class="tabel-width">PAYOUT AMOUNT</th>
-                                            <th class="tabel-width">PAYMENT STATUS</th>
-                                            <th class="tabel-width">UTR NO</th>
-                                            <th class="tabel-width">CHANNEL TYPE</th>
-                                            <th class="tabel-width">PAYOUT DATE</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <% payout.forEach((data)=> {%>
-                                            <tr>
-                                                <td>
-                                                    <%= data.ase_email %>
-                                                </td>
-                                                <td>
-                                                    <%= data.ase_id %>
-                                                </td>
-                                                <td>
-                                                    <%= data.ase_name %>
-                                                </td>
-                                                <td>
-                                                    <%= data.aw_code %>
-                                                </td>
-                                                <td>
-                                                    <%= data.aw_name %>
-                                                </td>
-                                                <td>
-                                                    <%= data.awsm_code %>
-                                                </td>
-                                                <td>
-                                                    <%= data.awsm_name %>
-                                                </td>
-                                                <td>
-                                                    <%= data.salesman_type %>
-                                                </td>
-                                                <td>???</td>
-                                                <td>
-                                                    <%= data.hq_location %>
-                                                </td>
-                                                <td>
-                                                    <%= data.awsm_state %>
-                                                </td>
-                                                <td>
-                                                    <%= data.awsm_city %>
-                                                </td>
-                                                <td>
-                                                    <%= data.beneficiary_name %>
-                                                </td>
-                                                <td>
-                                                    <%= data.address %>
-                                                </td>
-                                                <td>
-                                                    <%= data.bank_account_no %>
-                                                </td>
-                                                <td>
-                                                    <%= data.bank_name %>
-                                                </td>
-                                                <td>
-                                                    <%= data.ifsc_code %>
-                                                </td>
-                                                <td>
-                                                    <%= data.mobile_no %>
-                                                </td>
-                                                <td>
-                                                    <%= data.payout_month %>
-                                                </td>
-                                                <td>
-                                                    <%= data.payout_amount %>
-                                                </td>
-                                                <td>
-                                                    <p class="ACTIVE">
-                                                        <%= data.payment_status %>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <%= data.utr_no %>
-                                                </td>
-                                                <td>
-                                                    <%= data.channel %>
-                                                </td>
-                                                <td>
-                                                    <%= (data.created_on)?
-                                                        data.created_on.toLocaleDateString('en-IN'):'' %>
-                                                </td>
-                                            </tr>
-                                            <%}) ; %>
-                                    </tbody>
-
-                                </table>
-
-
-                            </div>
-                            <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                <a href="/payout?page=<%= currentPage - 1 %>"
-                                    class="paginate_button previous <%= startPage === 1 ? 'disabled' : '' %>"
-                                    aria-controls="example" data-dt-idx="0" tabindex="-1"
-                                    id="example_previous">Previous</a>
-                                <span>
-                                    <% for (let i=startPage; i <=endPage; i++) { %>
-                                        <a href="/payout?page=<%=i%>" class="paginate_button current"
-                                            aria-controls="example" data-dt-idx="<%=i %>" tabindex="0">
-                                            <%= i %>
-                                        </a>
-                                        <% } %>
-                                </span>
-                                <a href="/payout?page=<%= (parseInt(currentPage) + 1) %>"
-                                    class="paginate_button next <%= endPage === totalRows ? 'disabled' : '' %>"
-                                    aria-controls="example" id="example_next">Next</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="card-body">
+            <div id="demo" class="collapse">
+              <form action="./payout">
+                <div class="row">
+                  <div class="col-2">
+                    <label for="Mobile" class="mr-sm-2">SO Name</label>
+                    <input type="tel" maxlength="10" class="form-control" id="name" placeholder="SO Name" name="name"
+                      value="<%=QueryData.name %>" />
+                  </div>
+                  <div class="col-2">
+                    <label for="dsr_code" class="mr-sm-2">DSR Code </label>
+                    <input type="text" class="form-control" id="awsm_code" placeholder="DSR Code" name="dsr_code"
+                      value="<%=QueryData.dsr_code %>" />
+                  </div>
+                  <div class="col-2">
+                    <label for="salesman_name" class="mr-sm-2">DSR Name </label>
+                    <input type="text" class="form-control" id="awsm_name" placeholder="DSR Name" name="salesman_name"
+                      value="<%=QueryData.salesman_name %>" />
+                  </div>
+
+                  <div class="col-2">
+                    <label for="AW-ID" class="mr-sm-2">Distributor Name </label>
+
+                    <input type="text" class="form-control" id="aw_name" placeholder="Distributor Name"
+                      name="distributor_name" value="<%=QueryData.distributor_name %>" />
+                  </div>
+
+                  <div class="col-2">
+                    <label for="AW-NAME" class="mr-sm-2">Distributor Code </label>
+                    <input type="text" class="form-control" id="aw_code" placeholder="Distributor Code" name="aw_code"
+                      value="<%=QueryData.aw_code %>" />
+                  </div>
+
+                  <div class="col-2">
+                    <label for="ASE-CODE" class="mr-sm-2">Salary Payout </label>
+
+                    <input type="text" class="form-control" id="SalaryPayout" placeholder="Salary Payout"
+                      name="SalaryPayout" value="<%=QueryData.SalaryPayout %>" />
+                  </div>
+
+                  <div class="col-2 mt-2">
+                    <label for="ASE-NAME" class="mr-sm-2">Incentive Payout
+                    </label>
+
+                    <input type="text" class="form-control" id="incentive_payout" placeholder="Incentive Payout	"
+                      name="incentive_payout" value="<%=QueryData.incentive_payout %>" />
+                  </div>
+
+                  <div class="col-2 mt-2">
+                    <label for="FROM" class="mr-sm-2">FROM</label>
+
+                    <input type="date" class="form-control" id="fromDate" placeholder="fromDate" name="fromDate"
+                      value="<%=QueryData.fromDate %>" />
+                  </div>
+
+                  <div class="col-2 mt-2">
+                    <label for="TO" class="mr-sm-2">TO</label>
+
+                    <input type="date" class="form-control" id="toDate" placeholder="toDate" name="toDate"
+                      value="<%=QueryData.toDate %>" />
+                  </div>
+                </div>
+                <div class="text-right mb-3">
+                  <button type="reset" class="btn btn-outline-alternate custom-button reset-anchor mr-3 mt-3">
+                    Reset
+                  </button>
+                  <!-- <a href="./payout"
+                                        class="btn  btn-outline-alternate custom-button  reset-anchor mr-3 mt-3">Reset</a> -->
+                  <button type="submit" class="btn-shadow btn btn-primary custom-btn btn-lg mt-3">
+                    Apply
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="table table-striped table-bordered table-responsive dataTable no-footer">
+              <div class="table-responsive">
+                <table id="exampless" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th class="tabel-width">SO Name</th>
+                      <th class="tabel-width">DSR Code</th>
+                      <th class="tabel-width">DSR Name</th>
+                      <th class="tabel-width">Distributor NAME</th>
+                      <th class="tabel-width">Distributor Code</th>
+                      <th class="tabel-width">Salary Payout</th>
+                      <th class="tabel-width">Incentive Payout</th>
+                      <th class="tabel-width">Payout Month</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% payout.forEach((data)=> {%>
+                      <tr>
+                        <td>
+                          <%= data.name %>
+                        </td>
+                        <td>
+                          <%= data.dsrcode %>
+                        </td>
+                        <td>
+                          <%= data.awsm_name %>
+                        </td>
+                        <td>
+                          <%= data.name %>
+                        </td>
+                        <td>
+                          <%= data.distributorcode %>
+                        </td>
+                        <td>
+                          <%= data.SalaryPayout %>
+                        </td>
+                        <td>
+                          <%= data.IncentivePayout %>
+                        </td>
+                        <td>
+                          <%= new Date(data.Date).toLocaleString('default', { month: 'long' }) %>
+                        </td>
+
+                        <%}) ; %>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                <a href="/payout?page=<%= currentPage - 1 %>"
+                  class="paginate_button previous <%= startPage === 1 ? 'disabled' : '' %>" aria-controls="example"
+                  data-dt-idx="0" tabindex="-1" id="example_previous">Previous</a>
+                <span>
+                  <% for (let i=startPage; i <=endPage; i++) { %>
+                    <a href="/payout?page=<%=i%>" class="paginate_button current" aria-controls="example"
+                      data-dt-idx="<%=i %>" tabindex="0">
+                      <%= i %>
+                    </a>
+                    <% } %>
+                </span>
+                <a href="/payout?page=<%= (parseInt(currentPage) + 1) %>"
+                  class="paginate_button next <%= endPage === totalRows ? 'disabled' : '' %>" aria-controls="example"
+                  id="example_next">Next</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
+  <script>
+    function fnExcelReport(file, so_name) {
+      fetch(`/payout/export?so_name=${so_name}`)
+        .then((res) => res.json())
+        .then((data) => {
+          data.forEach((item) => {
+            // item.dob = formatDate(item.dob);
+            // item.created_on = formatDate(item.created_on);
+            item.insert_timestamp = formatDate(item.insert_timestamp);
+            // item.update_timestamp = formatDate(item.update_timestamp);
+            // item.bank_account_no = formatBankAccount(item.bank_account_no);
+          });
 
+          const csvContent = createCSV(data);
 
-    <script>
-        function fnExcelReport(file, mobile_no, awsm_code, awsm_name, salesman_type, aw_code, aw_name, ase_code, ase_name, fromDate, toDate) {
+          var element = document.createElement("a");
+          element.setAttribute(
+            "href",
+            "data:csv;charset=utf-8, " + encodeURIComponent(csvContent)
+          );
+          element.setAttribute("download", file);
 
-            fetch(`/payout/export?mobile_no=${mobile_no}&awsm_code=${awsm_code}&awsm_name=${awsm_name}&salesman_type=${salesman_type}&aw_code=${aw_code}&aw_name=${aw_name}&ase_code=${ase_code}&ase_name=${ase_name}&fromDate=${fromDate}&toDate=${toDate}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    data.forEach((item) => {
-                        item.dob = formatDate(item.dob);
-                        item.created_on = formatDate(item.created_on);
-                        item.insert_timestamp = formatDate(item.insert_timestamp);
-                        item.update_timestamp = formatDate(item.update_timestamp);
-                        item.bank_account_no = formatBankAccount(item.bank_account_no);
-                    });
+          document.body.appendChild(element);
 
-                    const csvContent = createCSV(data);
+          element.click();
 
-                    var element = document.createElement('a');
-                    element.setAttribute('href', 'data:csv;charset=utf-8, ' + encodeURIComponent(csvContent));
-                    element.setAttribute('download', file);
+          document.body.removeChild(element);
+        });
+    }
 
-                    document.body.appendChild(element);
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
 
-                    element.click();
+    function createCSV(data) {
+      const headers = [
+        "SO Name",
+        "DSR Code",
+        "DSR Name",
+        "Distributor NAME",
+        "Distributor Code",
+        "Salary Payout",
+        "Incentive Payout",
+        "Payout Month",
+      ];
 
-                    document.body.removeChild(element);
-                });
-        }
+      const flattenData = data.map((item) => ({
+        "SO Name": item.name,
+        "DSR Code": item.dsrcode,
+        "DSR Name": item.awsm_name,
+        "Distributor NAME": item.name,
+        "Distributor Code": item.aw_code,
+        "Salary Payout": item.SalaryPayout,
+        "Incentive Payout": item.IncentivePayout,
+      }));
+      const replacer = (key, value) => (value === null ? "" : value);
+      const csvContent = [
+        headers.join(","),
+        ...flattenData.map((row) =>
+          headers
+            .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+            .join(",")
+        ),
+      ].join("\r\n");
+      return csvContent;
+    }
 
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
+    document.getElementById("btnExport").addEventListener(
+      "click",
+      function () {
+        debugger;
+        var filename = "payout.csv";
+        var name = document.getElementById("name").value;
+        var awsm_code = document.getElementById("awsm_code").value;
+        var awsm_name = document.getElementById("awsm_name").value;
+        var aw_name = document.getElementById("aw_name").value;
+        var aw_code = document.getElementById("aw_code").value;
+        var SalaryPayout = document.getElementById("SalaryPayout").value;
+        var incentive_payout = document.getElementById("incentive_payout").value;
+        var fromDate = document.getElementById("fromDate").value;
+        var toDate = document.getElementById("toDate").value;
 
-        function formatBankAccount(accountNumber) {
-            return accountNumber.match(/.{1,4}/g).join(' ');
-        }
+        fnExcelReport(
+          filename,
+          name,
+          awsm_code,
+          awsm_name,
+          aw_name,
+          aw_code,
+          SalaryPayout,
+          incentive_payout,
+          fromDate,
+          toDate
+        );
+      },
+      false
+    );
+  </script>
 
-        function createCSV(data) {
-            const replacer = (key, value) => value === null ? '' : value;
-            const header = Object.keys(data[0])
-            const csvContent = [
-                header.join(','),
-                ...data.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
-            ].join('\r\n');
-            return csvContent;
-        }
-
-        document.getElementById("btnExport")
-            .addEventListener("click", function () {
-                var filename = "payout.csv";
-                var mobile_no = document.getElementById("mobile_no").value;
-                var awsm_code = document.getElementById("awsm_code").value;
-                var awsm_name = document.getElementById("awsm_name").value;
-                var salesman_type = document.getElementById("salesman_type").value;
-                var aw_code = document.getElementById("aw_code").value;
-                var aw_name = document.getElementById("aw_name").value;
-                var ase_code = document.getElementById("ase_code").value;
-                var ase_name = document.getElementById("ase_name").value;
-                var fromDate = document.getElementById("fromDate").value;
-                var toDate = document.getElementById("toDate").value;
-                fnExcelReport(filename, mobile_no, awsm_code, awsm_name, salesman_type, aw_code, aw_name, ase_code, ase_name, fromDate, toDate);
-            }, false);
-    </script>
-
-
-
-    <%- include("../shared/footer"); %>
+  <%- include("../shared/footer"); %>

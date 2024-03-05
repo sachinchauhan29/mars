@@ -42,9 +42,10 @@ const selectQueryByToken = async (token) => {
 
 const updateQuery = async (data) => {
     let token = data.token;
+
     return new Promise((resolve, reject) => {
         let query = `UPDATE awsm_users SET ? WHERE email =?`;
-        mysqlConnection.query(query, [{ token: token }, `${data.email}`], (error, result) => {
+        mysqlConnection.query(query, [{ token:data.token }, `${data.email}`], (error, result) => {
             if (error) {
                 return reject(error);
             }
@@ -56,7 +57,7 @@ const updateQuery = async (data) => {
 const updateQueryPassword = async (data) => {
     let password = data.password;
     return new Promise((resolve, reject) => {
-        let query = `UPDATE awsm_users SET ? WHERE email =?`;
+        let query = `UPDATE awsm_users SET ? AND SET ? WHERE email =?`;
         mysqlConnection.query(query, [{ password: password }, `${data.email}`], (error, result) => {
             if (error) {
                 return reject(error);
@@ -68,6 +69,7 @@ const updateQueryPassword = async (data) => {
 
 const updateQueryByToken = async (data) => {
     return new Promise((resolve, reject) => {
+        // console.log()
         let query = `UPDATE awsm_users SET ? WHERE token = ?`;
         mysqlConnection.query(query, [{ token: '' }, `${data.token}`], (error, result) => {
             if (error) {
@@ -80,9 +82,11 @@ const updateQueryByToken = async (data) => {
 
 const updatePasswordByToken = async (data) => {
     let password = data.password;
+
     return new Promise((resolve, reject) => {
-        let query = `UPDATE awsm_users SET ? WHERE token =?`;
-        mysqlConnection.query(query, [{ password: password }, `${data.token}`], (error, result) => {
+        let query = `UPDATE awsm_users SET ?, view_password = ? WHERE token = ?`;
+        console.log(data, "....................................................................");
+        mysqlConnection.query(query, [{ password: data.password }, data.confirmPassword, data.token], (error, result) => {
             if (error) {
                 return reject(error);
             }

@@ -10,7 +10,7 @@ const editKycDataView = async (req, res, next) => {
 
 
 const exportEditKYCData = async (req, res) => {
-  let allDetails = await selectEditKycData(req.query);
+  let allDetails = await filterEditKycData(req.query);
   res.send(allDetails)
 }
 

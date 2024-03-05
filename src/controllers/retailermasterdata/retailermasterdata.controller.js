@@ -1,4 +1,4 @@
-const { selectMasterData, getAWSMCity, exportMasterData } = require("../../models/master-data.model");
+const { selectMasterData, getAWSMCity, exportMasterData } = require("../../models/retailer_masterdata.model");
 
 
 const retailermasterdataView = async (req, res, next) => {
@@ -9,7 +9,7 @@ const retailermasterdataView = async (req, res, next) => {
 
 
 const exportKYCMasterData = async (req, res) => {
-    let masterData = await exportMasterData(req.query);
+    let masterData = await selectMasterData(req.query);
     res.send(masterData);
 }
 

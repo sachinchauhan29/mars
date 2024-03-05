@@ -3,12 +3,12 @@ const dbCon = require('../config/db');
 
 const selectKycData = async (data) => {
   let query = `
-      SELECT kyc_details.*, awsm_details.*, aw_details.*, ase_details.*
+      SELECT kyc_details.*, awsm_details.*, distributor_details.*, ase_details.*
       FROM kyc_details
       INNER JOIN awsm_details ON awsm_details.awsm_code = kyc_details.awsm_code
-      INNER JOIN aw_details ON kyc_details.aw_code = aw_details.aw_code
+      NNER JOIN distributor_details ON kyc_details.aw_code = distributor_details.distributorcode
       INNER JOIN ase_details ON kyc_details.ase_email = ase_details.ase_email_id
-      WHERE status = 'PENDING' AND (kyc_type = 'FRESH' OR kyc_type = 'Replace-KYC-Request' OR kyc_type = 'RE-KYC-Request')
+      WHERE kyc_details.status = 'PENDING' AND (kyc_type = 'FRESH' OR kyc_type = 'Replace-KYC-Request' OR kyc_type = 'RE-KYC-Request')
     `;
 
   if (data.mobile_no) {
@@ -21,13 +21,18 @@ const selectKycData = async (data) => {
     query += ` AND awsm_details.awsm_name = '${data.awsm_name}'`;
   }
   if (data.salesman_type) {
-    query += ` AND awsm_details.salesman_type = '${data.salesman_type}'`;
+    query += ` AND kyc_details.SellerType = '${data.salesman_type}'`;
   }
   if (data.aw_code) {
     query += ` AND kyc_details.aw_code = '${data.aw_code}'`;
   }
-  if (data.aw_name) {
-    query += ` AND aw_details.aw_name = '${data.aw_name}'`;
+  if (data.name) {
+    query += ` AND distributor_details.name = '${data.name}'`;
+  }
+  
+  //new edit
+  if (data.distributorcode) {
+    query += ` AND distributor_details.distributorcode = '${data.distributorcode}'`;
   }
   if (data.ase_code) {
     query += ` AND ase_details.ase_employee_code = '${data.ase_code}'`;
@@ -38,14 +43,14 @@ const selectKycData = async (data) => {
   if (data.fromDate && data.toDate) {
     query += ` AND DATE(kyc_details.created_on) BETWEEN STR_TO_DATE('${data.fromDate}', '%Y-%m-%d') AND STR_TO_DATE('${data.toDate}', '%Y-%m-%d')`;
   }
-  if (data.awsm_state) {
-    query += ` AND awsm_details.awsm_state = '${data.awsm_state}'`;
+  if (data.state) {
+    query += ` AND awsm_details.awsm_state = '${data.state}'`;
   }
-  if (data.awsm_city) {
-    query += ` AND awsm_details.awsm_city = '${data.awsm_city}'`;
+  if (data.city) {
+    query += ` AND awsm_details.awsm_city = '${data.city}'`;
   }
   query += ` ORDER BY kyc_details.created_on DESC`;
-
+console.log(query,"................");
   const limit = parseInt(1000000000);
   if (!isNaN(limit) && limit > 0) {
     query += ` LIMIT ${limit}`;
@@ -67,13 +72,14 @@ const selectKycData = async (data) => {
 
 const filterKycData = async (data) => {
   // let query = `select kyc_details.*, awsm_details.*, aw_details.*, ase_details.* from kyc_details INNER JOIN awsm_details on awsm_details.awsm_code=kyc_details.awsm_code INNER JOIN aw_details on kyc_details.aw_code = aw_details.aw_code INNER JOIN ase_details on kyc_details.ase_email = ase_details.ase_email_id WHERE kyc_details.kyc_type = 'FRESS' or RE-KYC or RE-KYC-Request`;
-  let query = `SELECT kyc_details.*, awsm_details.*, aw_details.*, ase_details.*
+  let query = `SELECT kyc_details.*, awsm_details.*, distributor_details.*, ase_details.*
   FROM kyc_details
   INNER JOIN awsm_details ON awsm_details.awsm_code = kyc_details.awsm_code
-  INNER JOIN aw_details ON kyc_details.aw_code = aw_details.aw_code
+  INNER JOIN distributor_details ON kyc_details.aw_code = distributor_details.distributorcode
   INNER JOIN ase_details ON kyc_details.ase_email = ase_details.ase_email_id
   WHERE kyc_details.kyc_type IN ('FRESH', 'Replace-KYC-Request', 'RE-KYC-Request')
   AND kyc_details.status = 'PENDING'`;
+
 
 
   if (data.Mobile) {
@@ -86,13 +92,18 @@ const filterKycData = async (data) => {
     query += ` AND awsm_details.awsm_name = '${data.salesman_name}'`;
   }
   if (data.salesman_type) {
-    query += ` AND awsm_details.salesman_type = '${data.salesman_type}'`;
+    query += ` AND kyc_details.SellerType = '${data.salesman_type}'`;
+  }
+
+  //new edit
+  if (data.distributorcode) {
+    query += ` AND distributor_details.distributorcode = '${data.distributorcode}'`;
   }
   if (data.aw_code) {
     query += ` AND kyc_details.aw_code = '${data.aw_code}'`;
   }
-  if (data.aw_name) {
-    query += ` AND aw_details.aw_name = '${data.aw_name}'`;
+  if (data.name) {
+    query += ` AND distributor_details.name = '${data.name}'`;
   }
   if (data.ase_code) {
     query += ` AND ase_details.ase_employee_code = '${data.ase_code}'`;

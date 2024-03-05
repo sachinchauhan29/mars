@@ -106,20 +106,21 @@ const resetPassword = async (req, res) => {
             req.body.token = token;
             await updateQuery(req.body);
             await sendLinkOnMail(req.body.email, token);
-            req.session.message = 'mail send successfully!';
+            req.session.message = 'Mail sent successfully!';
             return res.redirect('/account');
         } else {
-            req.session.message = 'user not exist!';
+            req.session.message = 'User does not exist!';
             return res.redirect('/account');
         }
-    }
-    catch (error) {
-        req.session.message = 'something went wrong!';
+    } catch (error) {
+        console.error("Error:", error);
+        req.session.message = 'Something went wrong!';
         return res.redirect('/account');
     }
 }
 
 const updatePasswordView = async (req, res) => {
+    // console.log(req.body.token,"I am from updatepasswordview");
     res.cookie('token', req.query.token, { httpOnly: true });
     res.render('reset-password');
 }

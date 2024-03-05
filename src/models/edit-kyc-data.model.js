@@ -3,14 +3,14 @@ const dbCon = require('../config/db');
 
 const selectEditKycData = async (data) => {
   // let opt = {
-  //   sql: `select kyc_details.*, awsm_details.*, aw_details.*, ase_details.* from kyc_details INNER JOIN awsm_details on awsm_details.awsm_code=kyc_details.awsm_code INNER JOIN aw_details on kyc_details.aw_code = aw_details.aw_code INNER JOIN ase_details on kyc_details.ase_email = ase_details.ase_email_id WHERE kyc_details.kyc_type = 'Edit-KYC-Request'`,
+  //   sql: `select kyc_details.*, awsm_details.*, distributor_details.*, ase_details.* from kyc_details INNER JOIN awsm_details on awsm_details.awsm_code=kyc_details.awsm_code INNER JOIN distributor_details on kyc_details.aw_code = distributor_details.distributorcode INNER JOIN ase_details on kyc_details.ase_email = ase_details.ase_email_id WHERE kyc_details.kyc_type = 'Edit-KYC-Request'`,
   //   nestTables: false
   // }
 
-  let query = `select kyc.created_on, kyc.kyc_type, kyc.ase_email, ase.ase_employee_code, ase.ase_name, kyc.aw_code, aw.aw_name, kyc.awsm_code, awsm.awsm_name, awsm.salesman_type, kyc.beneficiary_name, awsm.awsm_state, awsm.awsm_city, kyc.address, kyc.photo, kyc.bank_account_no, kyc.ifsc_code, kyc.bank_cheque, kyc.bank_name, kyc.photo_id, kyc.mobile_no, kyc.gender, kyc.dob, kyc.update_timestamp, awsm.channel, kyc.status, kyc.wip_remarks
+  let query = `select kyc.created_on, kyc.kyc_type, kyc.ase_email, ase.ase_employee_code, ase.ase_name, kyc.aw_code, aw.name, kyc.awsm_code, awsm.awsm_name, awsm.salesman_type, kyc.beneficiary_name, awsm.awsm_state, awsm.awsm_city, kyc.address, kyc.photo, kyc.bank_account_no, kyc.ifsc_code, kyc.bank_cheque, kyc.bank_name, kyc.photo_id, kyc.mobile_no, kyc.gender, kyc.dob, kyc.update_timestamp, awsm.channel, kyc.status, kyc.wip_remarks
   from kyc_details AS kyc 
   INNER JOIN awsm_details AS awsm  on awsm.awsm_code=kyc.awsm_code 
-  INNER JOIN aw_details AS aw  on kyc.aw_code = aw.aw_code 
+  INNER JOIN distributor_details AS aw  on kyc.aw_code = aw.distributorcode	
   INNER JOIN ase_details AS ase on kyc.ase_email = ase.ase_email_id 
   WHERE kyc.kyc_type = 'Edit-KYC-Request' AND kyc.status = 'PENDING'`;
 
@@ -29,8 +29,8 @@ const selectEditKycData = async (data) => {
   if (data.aw_code) {
     query += ` AND kyc.aw_code = '${data.aw_code}'`;
   }
-  if (data.aw_name) {
-    query += ` AND aw.aw_name = '${data.aw_name}'`;
+  if (data.name) {
+    query += ` AND aw.name = '${data.name}'`;
   }
   if (data.ase_code) {
     query += ` AND ase.ase_employee_code = '${data.ase_code}'`;
@@ -68,7 +68,7 @@ const selectEditKycData = async (data) => {
 
 
 const filterEditKycData = async (data) => {
-  let query = `select kyc_details.*, awsm_details.*, aw_details.*, ase_details.* from kyc_details INNER JOIN awsm_details on awsm_details.awsm_code=kyc_details.awsm_code INNER JOIN aw_details on kyc_details.aw_code = aw_details.aw_code INNER JOIN ase_details on kyc_details.ase_email = ase_details.ase_email_id WHERE kyc_details.kyc_type = 'Edit-KYC-Request' AND kyc_details.status = 'PENDING'`;
+  let query = `select kyc_details.*, awsm_details.*, distributor_details.*, ase_details.* from kyc_details INNER JOIN awsm_details on awsm_details.awsm_code=kyc_details.awsm_code INNER JOIN distributor_details on kyc_details.aw_code = distributor_details.distributorcode INNER JOIN ase_details on kyc_details.ase_email = ase_details.ase_email_id WHERE kyc_details.kyc_type = 'Edit-KYC-Request' AND kyc_details.status = 'PENDING'`;
 
   if (data.Mobile) {
     query += ` AND kyc_details.mobile_no = '${data.Mobile}'`;
@@ -80,14 +80,22 @@ const filterEditKycData = async (data) => {
     query += ` AND awsm_details.awsm_name = '${data.salesman_name}'`;
   }
   if (data.salesman_type) {
-    query += ` AND awsm_details.salesman_type = '${data.salesman_type}'`;
+    query += ` AND kyc_details.SellerType = '${data.salesman_type}'`;
   }
   if (data.aw_code) {
     query += ` AND kyc_details.aw_code = '${data.aw_code}'`;
   }
-  if (data.aw_name) {
-    query += ` AND aw_details.aw_name = '${data.aw_name}'`;
+
+  //new edit 29/02/2024
+  if (data.name) {
+    query += ` AND distributor_details.name = '${data.name}'`;
   }
+  if (data.distributorcode) {
+    query += ` AND distributor_details.distributorcode = '${data.distributorcode}'`;
+  }
+
+
+
   if (data.ase_code) {
     query += ` AND ase_details.ase_employee_code = '${data.ase_code}'`;
   }

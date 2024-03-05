@@ -389,7 +389,7 @@ body {
     background-color: #fff;
     height: 100vh;
     overflow: auto;
-
+    text-transform: capitalize;
 }
 
 [tabindex="-1"]:focus {
@@ -557,7 +557,7 @@ th {
 
 label {
     display: inline-block;
-    margin-bottom: .5rem;
+    /* margin-bottom: .5rem; */
     text-transform: uppercase;
     font-size: 11px;
 }
@@ -6621,9 +6621,9 @@ a.close.disabled {
     opacity: .5
 }
 
-.modal-top {
+/* .modal-top {
     top: 50px;
-}
+} */
 
 .modal-topp {
     top: 250px;
@@ -6684,7 +6684,7 @@ a.close.disabled {
 @media(min-width:576px) {
     .modal-dialog {
         max-width: 500px;
-        margin: 1.75rem auto
+        /* margin: 1.75rem auto */
     }
 
     .modal-dialog-centered {
@@ -11510,7 +11510,7 @@ a {
 }
 
 .app-sidebar .app-sidebar__inner {
-    padding: 2px 1.5rem 1.5rem
+    padding: 2px 0.9rem 1.5rem;
 }
 
 .app-sidebar .scrollbar-sidebar {
@@ -19629,7 +19629,7 @@ a.fc-more:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 22px;
+    /* margin-top: 22px; */
 }
 
 .upload-files-container {
@@ -20670,4 +20670,19 @@ select:hover {
 
 .width-drop {
     min-width: 10rem !important;
+}
+
+
+.dashboard-col-4 {
+    margin-top: 50px;
+}
+
+#acquisitions {
+    width: 400px !important;
+    height: auto !important;
+}
+
+#Presentchart {
+    width: 400px !important;
+    height: auto !important;
 }

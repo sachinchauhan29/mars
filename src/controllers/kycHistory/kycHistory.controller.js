@@ -8,7 +8,7 @@ const kycHistoryView = async (req, res, next) => {
 }
 
 const exportKYCHistoryData = async (req, res) => {
-  let KYCHistoryData = await downloadHistoryAllData(req.query);
+  let KYCHistoryData = await selectKYCHistory(req.query);
   res.send(KYCHistoryData)
 }
 

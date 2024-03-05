@@ -5,7 +5,7 @@ const exportMasterData = async (data) => {
   SELECT kyc.mobile_no, awsm.awsm_code, kyc.kyc_type, kyc_report.awsm_name, awsm.salesman_type, kyc_report.aw_code, kyc.beneficiary_name, kyc.address, kyc.bank_account_no,kyc.bank_name, kyc.ifsc_code, kyc.calling_remarks, kyc.calling_count, kyc.status, kyc.calling_status, kyc_report.payment_status, kyc_report.payout_amount, kyc_report.payout_month, kyc.approved_on, kyc.update_timestamp, awsm.channel, kyc.gender, kyc.dob, kyc_report.aw_name, ase.ase_employee_code, ase.ase_email_id, kyc_report.ase_name, kyc.created_on, awsm.awsm_state, awsm.awsm_city
   FROM kyc_details AS kyc
   INNER JOIN awsm_details AS awsm ON awsm.awsm_code = kyc.awsm_code
-  INNER JOIN aw_details AS aw ON aw.aw_code = kyc.aw_code
+  INNER JOIN distributor_details AS aw ON aw.distributorcode = kyc.aw_code
   INNER JOIN ase_details AS ase ON ase.ase_email_id = kyc.ase_email
   INNER JOIN kyc_report_base AS kyc_report ON kyc_report.ase_email = kyc.ase_email
   WHERE 1 = 1`;
@@ -66,7 +66,7 @@ const selectMasterData = async (data) => {
   //   SELECT 
   //   kyc_details.*, 
   //   awsm_details.*, 
-  //   aw_details.*, 
+  //   distributor_details.*, 
   //   ase_details.*, 
   //   kyc_report_base.*
   // FROM 
@@ -76,9 +76,9 @@ const selectMasterData = async (data) => {
   // ON 
   //   awsm_details.awsm_code = kyc_details.awsm_code
   // INNER JOIN 
-  //   aw_details 
+  //   distributor_details 
   // ON 
-  //   kyc_details.aw_code = aw_details.aw_code
+  //   kyc_details.aw_code = distributor_details.aw_code
   // INNER JOIN 
   //   ase_details 
   // ON 
@@ -89,15 +89,56 @@ const selectMasterData = async (data) => {
   //   kyc_report_base.ase_email = kyc_details.ase_email
   // WHERE 
   //   1 = 1`;
-
+  //   let query = `SELECT kyc_details.*, awsm_details.*, distributor_details.*, ase_details.*
+  // FROM kyc_details AS kyc
+  // INNER JOIN awsm_details ON awsm_details.awsm_code = kyc_details.awsm_code
+  // NNER JOIN distributor_details ON kyc_details.aw_code = distributor_details.distributorcode
+  // INNER JOIN ase_details ON kyc_details.ase_email = ase_details.ase_email_id
+  // WHERE 1=1`;
   let query = `
-  SELECT kyc.mobile_no, awsm.awsm_code, kyc.kyc_type, kyc_report.awsm_name, awsm.salesman_type, kyc_report.aw_code, kyc.beneficiary_name, kyc.address, kyc.bank_account_no,kyc.bank_name, kyc.ifsc_code, kyc.calling_remarks, kyc.calling_count, kyc.status, kyc.calling_status, kyc_report.payment_status, kyc_report.payout_amount, kyc_report.payout_month, kyc.approved_on, kyc.update_timestamp, awsm.channel, kyc.gender, kyc.dob, kyc_report.aw_name, ase.ase_employee_code, ase.ase_email_id, kyc_report.ase_name, kyc.created_on, awsm.awsm_state, awsm.awsm_city
-  FROM kyc_details AS kyc
-  INNER JOIN awsm_details AS awsm ON awsm.awsm_code = kyc.awsm_code
-  INNER JOIN aw_details AS aw ON aw.aw_code = kyc.aw_code
-  INNER JOIN ase_details AS ase ON ase.ase_email_id = kyc.ase_email
-  INNER JOIN kyc_report_base AS kyc_report ON kyc_report.ase_email = kyc.ase_email
-  WHERE 1 = 1`;
+    SELECT 
+    kyc.mobile_no, 
+    awsm.awsm_code, 
+    kyc.kyc_type, 
+    kyc_report.awsm_name, 
+    awsm.salesman_type, 
+    kyc_report.aw_code, 
+    kyc.beneficiary_name, 
+    kyc.address, 
+    kyc.bank_account_no,
+    kyc.bank_name, 
+    kyc.ifsc_code, 
+    kyc.calling_remarks, 
+    kyc.calling_count, 
+    kyc.status, 
+    kyc.calling_status, 
+    kyc_report.payment_status, 
+    kyc_report.payout_amount, 
+    kyc_report.payout_month, 
+    kyc.approved_on, 
+    kyc.update_timestamp, 
+    awsm.channel, 
+    kyc.gender, 
+    kyc.dob, 
+    kyc_report.aw_name, 
+    ase.ase_employee_code, 
+    ase.ase_email_id, 
+    kyc_report.ase_name, 
+    kyc.created_on, 
+    awsm.awsm_state, 
+    awsm.awsm_city
+  FROM 
+    kyc_details AS kyc
+  INNER JOIN 
+    awsm_details AS awsm ON awsm.awsm_code = kyc.awsm_code
+  INNER JOIN 
+    distributor_details AS aw ON aw.distributorcode = kyc.aw_code
+  INNER JOIN 
+    ase_details AS ase ON ase.ase_email_id = kyc.ase_email
+  INNER JOIN 
+    kyc_report_base AS kyc_report ON kyc_report.ase_email = kyc.ase_email
+  WHERE 
+    1 = 1 `;
 
   if (data.Mobile) {
     query += ` AND kyc.mobile_no = '${data.Mobile}'`;

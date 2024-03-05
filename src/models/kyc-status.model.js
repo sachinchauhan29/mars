@@ -8,7 +8,7 @@ const selectKYCStatus = async (data) => {
     query += ` AND kyc_details.awsm_code = '${data.salesman_id}'`;
   }
   if (data.salesman_type) {
-    query += ` AND awsm_details.salesman_type = '${data.salesman_type}'`;
+    query += ` AND kyc_details.SellerType = '${data.salesman_type}'`;
   }
   if (data.state) {
     query += ` AND awsm_details.awsm_state = '${data.state}'`;
@@ -70,7 +70,7 @@ const exportKYCStatus = async (data) => {
     query += ` AND kyc_details.awsm_code = '${data.awsm_code}'`;
   }
   if (data.salesman_type) {
-    query += ` AND awsm_details.salesman_type = '${data.salesman_type}'`;
+    query += ` AND kyc_details.SellerType = '${data.salesman_type}'`;
   }
   if (data.awsm_state) {
     query += ` AND awsm_details.awsm_state = '${data.awsm_state}'`;

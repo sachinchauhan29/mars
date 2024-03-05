@@ -19,7 +19,7 @@ const payoutView = async (req, res, next) => {
 
 
 const exportPayout = async (req, res) => {
-  let exportResult = await payoutExport(req.query);
+  let exportResult = await selectKYCReportBase(req.query);
   res.send(exportResult);
 }
 

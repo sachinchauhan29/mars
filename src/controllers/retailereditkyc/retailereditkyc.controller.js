@@ -1,4 +1,4 @@
-const { selectEditKycData, updateEditKycStatus, filterEditKycData, getAWSMCity, updateKycStatus, CurrentUser, SaveThirdPartyData } = require("../../models/edit-kyc-data.model");
+const { selectEditKycData, updateEditKycStatus, filterEditKycData, getAWSMCity, updateKycStatus, CurrentUser, SaveThirdPartyData } = require("../../models/retailer-edit-kyc.model");
 const { updateNotification } = require("../../models/notification.model");
 const axios = require('axios');
 

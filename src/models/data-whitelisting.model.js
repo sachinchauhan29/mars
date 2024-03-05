@@ -4,8 +4,8 @@ const dbCon = require('../config/db');
 const totalEntries = async () => {
   let query = `SELECT COUNT(*) as totalEntries
   FROM awsm_details AS ad
-  INNER JOIN aw_details AS awd ON awd.aw_code = ad.aw_code
-  INNER JOIN ase_details AS ase ON awd.ase_email_id = ase.ase_email_id
+  INNER JOIN distributor_details AS awd ON awd.distributorcode = ad.aw_code
+  INNER JOIN ase_details AS ase ON awd.aseemailid = ase.ase_email_id
   WHERE 1 = 1`;
 
   return new Promise((resolve, reject) => {
@@ -36,10 +36,10 @@ const selectDataWhitelisting = async (data) => {
 
 
   let query = `SELECT ad.awsm_code, ad.awsm_name, ad.awsm_city, ad.awsm_state, ad.is_active, ad.insert_timestamp, ad.salesman_type, ad.channel,
-  ase.ase_employee_code, ase.ase_name, ase.ase_email_id, awd.aw_code, ase.ase_state, ase.ase_city, awd.aw_name, awd.aw_state, awd.aw_city, awd.region
+  ase.ase_employee_code, ase.ase_name, ase.ase_email_id, distributor.distributorcode, ase.ase_state, ase.ase_city, distributor.name, distributor.state, distributor.city, distributor.region
   FROM awsm_details AS ad
-  INNER JOIN aw_details AS awd ON awd.aw_code = ad.aw_code
-  INNER JOIN ase_details AS ase ON ase.ase_email_id = awd.ase_email_id
+  INNER JOIN distributor_details AS distributor ON distributor.distributorcode = ad.aw_code
+  INNER JOIN ase_details AS ase ON ase.ase_email_id = distributor.aseemailid
   WHERE 1 = 1
   `;
 
@@ -53,7 +53,7 @@ const selectDataWhitelisting = async (data) => {
     query += ` AND ase.ase_email_id = '${data.ase_email_id}'`;
   }
   if (data.aw_code) {
-    query += ` AND awd.aw_code = '${data.aw_code}'`;
+    query += ` AND distributor.distributorcode = '${data.aw_code}'`;
   }
   if (data.salesman_id) {
     query += ` AND ad.awsm_code = '${data.salesman_id}'`;
@@ -65,7 +65,7 @@ const selectDataWhitelisting = async (data) => {
     query += ` AND ad.salesman_type = '${data.salesman_type}'`;
   }
   if (data.aw_code) {
-    query += ` AND awd.aw_code = '${data.aw_code}'`;
+    query += ` AND distributor.distributorcode = '${data.aw_code}'`;
   }
   if (data.fromDate && data.toDate) {
     query += ` AND DATE(ad.insert_timestamp) BETWEEN STR_TO_DATE('${data.fromDate}', '%Y-%m-%d') AND STR_TO_DATE('${data.toDate}', '%Y-%m-%d')`;
@@ -75,14 +75,14 @@ const selectDataWhitelisting = async (data) => {
     query += ` AND (ase.ase_email_id LIKE ${searchTerm} OR ase.ase_name LIKE ${searchTerm} OR ase.ase_employee_code LIKE ${searchTerm})`;
   }
 
-  query += ` ORDER BY ad.insert_timestamp DESC LIMIT ? OFFSET ?`;
+  // query += ` ORDER BY ad.insert_timestamp DESC LIMIT ? OFFSET ?`;
 
-  // if (true) {
-  //   query += ` ORDER BY ad.insert_timestamp DESC`;
-  // }
-  // if (data.limit || true) {
-  //   query += ` LIMIT ${parseInt(10)} `;
-  // }
+  if (true) {
+    query += ` ORDER BY ad.insert_timestamp DESC`;
+  }
+  if (data.limit || true) {
+    query += ` LIMIT ${parseInt(10)} `;
+  }
 
   return new Promise((resolve, reject) => {
     dbCon.query(query, [pageSize, offset], (error, result) => {
@@ -99,7 +99,7 @@ const exportWhitelisting = async (data) => {
     SELECT ad.awsm_code, ad.awsm_name, ad.awsm_city, ad.awsm_state, ad.is_active, ad.insert_timestamp, ad.salesman_type, ad.channel,
     ase.ase_employee_code, ase.ase_name, ase.ase_email_id, awd.aw_code, ase.ase_state, ase.ase_city, awd.aw_name, awd.aw_state, awd.aw_city, awd.region
     FROM awsm_details AS ad
-    INNER JOIN aw_details AS awd ON awd.aw_code = ad.aw_code
+    INNER JOIN distributor_details AS awd ON awd.distributorcode = ad.aw_code
     INNER JOIN ase_details AS ase ON awd.ase_email_id = ase.ase_email_id
     WHERE 1 = 1`;
 
@@ -160,8 +160,8 @@ const getTotalCount = () => {
   let countQuery = `
     SELECT COUNT(*) as total
     FROM awsm_details AS ad
-    INNER JOIN aw_details AS awd ON awd.aw_code = ad.aw_code
-    INNER JOIN ase_details AS ase ON awd.ase_email_id = ase.ase_email_id
+    INNER JOIN distributor_details AS awd ON awd.distributorcode = ad.aw_code
+    INNER JOIN ase_details AS ase ON awd.aseemailid = ase.ase_email_id
     WHERE 1 = 1
   `;
 
@@ -293,7 +293,8 @@ const insertASE = async (data) => {
 
 
 const selectAW = async (data) => {
-  let query = `SELECT * FROM aw_details where aw_code = '${data.aw_code}'`;
+  console.log('selectAW data', data);
+  let query = `SELECT * FROM distributor_details  where distributorcode = '${data.aw_code}'`;
   return new Promise((resolve, reject) => {
     dbCon.query(query, (error, result) => {
       if (error) {
@@ -305,8 +306,10 @@ const selectAW = async (data) => {
 }
 
 const updateAW = async (data) => {
-  let query = `UPDATE aw_details SET aw_city = ?, aw_name = ?, aw_state = ?, region = ?, ase_email_id = ? WHERE aw_code = ? `;
+  console.log('sachin data', data);
+  let query = `UPDATE distributor_details SET city = ?, name = ?, state = ?, region = ?, aseemailid = ? WHERE distributorcode = ? `;
   let values = [data.aw_city, data.aw_name, data.aw_state, data.region, data.ase_email_id, data.aw_code];
+  //let values = [data.city, data.name, data.state, data.region, data.aseemailid, data.distributorcode];
 
   return new Promise((resolve, reject) => {
     dbCon.query(query, values, (error, result) => {
@@ -319,8 +322,9 @@ const updateAW = async (data) => {
 }
 
 const insertAW = async (data) => {
-  let query = 'INSERT INTO aw_details (aw_city, aw_name, aw_state, region, aw_code, ase_email_id) VALUES (?, ?, ?, ?, ?, ?)';
-  let values = [data.aw_city, data.aw_name, data.aw_state, data.region, data.aw_code, data.ase_email_id];
+
+  let query = 'INSERT INTO distributor_details (city, name, state, region, distributorcode, aseemailid,SoEmailId,Email) VALUES (?, ?, ?, ?, ?, ?, ?,?)';
+  let values = [data.aw_city, data.aw_name, data.aw_state, data.region, data.aw_code, data.ase_email_id, data.ase_email_id, data.ase_email_id];
 
   return new Promise((resolve, reject) => {
     dbCon.query(query, values, (error, result) => {
@@ -384,6 +388,7 @@ const updateAWSM = async (data) => {
 
 
 const insertAWSM = async (data) => {
+  console.log('insertAWSM sachin', data);
   let query = 'INSERT INTO awsm_details (awsm_city, awsm_state, awsm_name, aw_code, awsm_code, salesman_type, channel) VALUES (?, ?, ?, ?, ?, ?, ?)';
   let values = [data.awsm_city, data.awsm_state, data.awsm_name, data.aw_code, data.awsm_code, data.salesman_type, data.channel];
 

@@ -131,13 +131,15 @@
                                                 placeholder="salesman_type" value="<%=QueryData.salesman_type %>">
 
                                                 <option value=""> dsr type </option>
-                                                <option value="Awsm" <%=QueryData.salesman_type==='Awsm' ? 'selected'
-                                                    : '' %>>DSR</option>
-                                                <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
-                                                    %>>SDA</option>
-                                                <option value="Psm" <%=QueryData.salesman_type==='Psm' ? 'selected' : ''
-                                                    %>>PSM</option>>
+                                                <option value="PRE_SELLER" <%=QueryData.salesman_type==='PRE_SELLER'
+                                                    ? 'selected' : '' %>>PRE_SELLER</option>
+                                                <option value="ISR" <%=QueryData.salesman_type==='ISR' ? 'selected' : ''
+                                                    %>>ISR</option>
+                                                <option value="PROMOTER" <%=QueryData.salesman_type==='PROMOTER'
+                                                    ? 'selected' : '' %>>PROMOTER</option>>
 
+                                                <option value="MERCHANDISER" <%=QueryData.salesman_type==='MERCHANDISER'
+                                                    ? 'selected' : '' %>>MERCHANDISER</option>>
                                             </select>
 
                                         </div>
@@ -481,7 +483,7 @@
 
                                     <div class="table-new "
                                         style="width: 180px !important;top: 200px;bottom: 0;right: 0;left: 20px;">
-                                        <form action="./edit-kyc-data/update-status?kyc_id=<%=kyc.kyc_id%>"
+                                        <form action="./retailer-edit-kyc/update-status?kyc_id=<%=kyc.kyc_id%>"
                                             method="post">
                                             <ul class="table-tabel">
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"

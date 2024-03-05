@@ -1,5 +1,6 @@
 const express = require('express');
-const dashboardRoute = require('./dashboard/dashboard.route');
+// const dashboardRoute = require('./dashboard/dashboard.route');
+const dashboardRoute = require("../routes/dashboard/dashboard.route");
 const accountRoutes = require("./account/account.route");
 const kycRoutes = require("./kyc/kyc.route");
 const uploadPayoutRoutes = require('./uploadPayout/uploadPayout.route');
@@ -25,8 +26,8 @@ const retailerHistoryRoutes = require('../routes/retailerHistory/retailerhistory
 const distributorRoutes = require('../routes/distributor/distributor.route');
 const retailermasterdataRouter = require('../routes/retailermasterdata/retailermasterdata.route');
 const retailerkycstatusRoute = require("./retailerkycstatus/retailerkycstatus.route");
-
-
+const dsr_attendance = require("../routes/dsr-attendance/dsr-attendance.route");
+const retailerwhitelistingRoute = require("../routes/retailerwhitelist/retailerwhitelist.route");
 
 const router = express.Router();
 
@@ -34,6 +35,10 @@ const routes = [
     {
         path: '/',
         route: accountRoutes
+    },
+    {
+        path: '/dashboard',
+        route: dashboardRoute
     },
     {
         path: '/account',
@@ -118,6 +123,14 @@ const routes = [
     {
         path: '/retailermasterdata',
         route: retailermasterdataRouter,
+    },
+    {
+        path: '/dsr_attendance',
+        route: dsr_attendance,
+    },
+    {
+        path: '/retailerwhitelisting',
+        route: retailerwhitelistingRoute,
     }
 
 ];

@@ -1,120 +1,734 @@
 <%- include("../shared/header"); %>
+  <style>
+    .chart-container .chartjs-render-monitor .chart-legend .title {
+      padding: 20px !important;
+    }
 
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <!-- <div class="page-title-icon">
-                <a href="./index.html">
-                    <i class=" fa fa-home icon-gradient bg-mean-fruit">
-                    </i>
-                </a>
-            </div> -->
-                <div>
-                    <b> Dashboard</b>
-                </div>
-            </div>
+    #legend {
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+  </style>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-3d"></script> -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+        <!-- <div class="page-title-icon">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </div> -->
+        <div>
+          <b> Dashboard</b>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- <div class="row">
-    <div class="col-3">
-        <div class="card-css">
-            <div class="MuiBox-root css-1hqeloq">
-                <div class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc">
-                    <div class="MuiGrid-root MuiGrid-item css-9a3hft">
-                        <p class="MuiTypography-root MuiTypography-body1 css-1640a91">PROGRAM
-                            DURATION
-                        </p>
-                    </div>
-                    <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                        <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
-                            <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">500.00
-                                </p>
-                            </div>
 
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card-csss">
-            <div class="MuiBox-root css-1hqeloq">
-                <div class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc">
-                    <div class="MuiGrid-root MuiGrid-item css-9a3hft">
-                        <p class="MuiTypography-root MuiTypography-body1 css-1640a91">LOYALTY
-                            BILLING
-                        </p>
-                    </div>
-                    <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                        <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
-                            <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">500.00
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
+  <!-- <div class="row">
+  <div class="col-3">
+    <div class="card-css">
+      <div class="MuiBox-root css-1hqeloq">
         <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiCard-root css-ipps8o">
-            <div class="MuiBox-root css-1hqeloq">
-                <div class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc">
-                    <div class="MuiGrid-root MuiGrid-item css-9a3hft">
-                        <p class="MuiTypography-root MuiTypography-body1 css-1640a91">EARNED POINTS
-                        </p>
-                    </div>
-                    <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                        <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
-                            <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">500.00
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc"
+        >
+          <div class="MuiGrid-root MuiGrid-item css-9a3hft">
+            <p class="MuiTypography-root MuiTypography-body1 css-1640a91">
+              PROGRAM DURATION
+            </p>
+          </div>
+          <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+            <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
+              <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">
+                  500.00
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="col-3">
+  </div>
+  <div class="col-3">
+    <div class="card-csss">
+      <div class="MuiBox-root css-1hqeloq">
         <div
-            class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiCard-root css-1szkylq">
-            <div class="MuiBox-root css-19midj6">
-                <div class="MuiBox-root css-1hqeloq">
-                    <div
-                        class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc">
-                        <div class="MuiGrid-root MuiGrid-item css-9a3hft">
-                            <p class="MuiTypography-root MuiTypography-body1 css-1640a91">
-                                REDEEMED POINTS
-                            </p>
-                        </div>
-                        <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                            <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
-                                <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
-                                    <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">
-                                        500.00
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc"
+        >
+          <div class="MuiGrid-root MuiGrid-item css-9a3hft">
+            <p class="MuiTypography-root MuiTypography-body1 css-1640a91">
+              LOYALTY BILLING
+            </p>
+          </div>
+          <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+            <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
+              <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">
+                  500.00
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="col-3">
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiCard-root css-ipps8o"
+    >
+      <div class="MuiBox-root css-1hqeloq">
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc"
+        >
+          <div class="MuiGrid-root MuiGrid-item css-9a3hft">
+            <p class="MuiTypography-root MuiTypography-body1 css-1640a91">
+              EARNED POINTS
+            </p>
+          </div>
+          <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+            <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
+              <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+                <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">
+                  500.00
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiCard-root css-1szkylq"
+    >
+      <div class="MuiBox-root css-19midj6">
+        <div class="MuiBox-root css-1hqeloq">
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1wkwmmc"
+          >
+            <div class="MuiGrid-root MuiGrid-item css-9a3hft">
+              <p class="MuiTypography-root MuiTypography-body1 css-1640a91">
+                REDEEMED POINTS
+              </p>
+            </div>
+            <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+              <div class="MuiGrid-root MuiGrid-container css-v3z1wi">
+                <div class="MuiGrid-root MuiGrid-item css-1wxaqej">
+                  <p class="MuiTypography-root MuiTypography-body1 css-tg80y7">
+                    500.00
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card mt-3">
+        <div class="card-header-tab card-header-tab-animation card-header">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-12">
+              <h6><b>TREND REGION WISE DETAILS</b></h6>
+            </div>
 
-    <%- include("../shared/footer"); %>
+            <div class="col-lg-4 col-12 text-right">
+              <button class="btn-shadow btn btn-primary custom-btn btn-lg" data-toggle="collapse" data-target="#demo2">
+                <i class="fas fa-filter mr-2"></i>Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="demo2" class="collapse">
+            <form action="">
+              <div class="row">
+                <div class="col-4">
+                  <label for="selectedMonth" class="mr-sm-2">Select Month</label>
+                  <select class="form-control" id="selectedMonth">
+                    <option value="">Choose</option>
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2">Select Region</label>
+                  <select class="form-control" id="selectedRegion">
+                    <option value="">Choose</option>
+                    <option value="Region">Region</option>
+                    <option value="Region">North</option>
+                    <!-- <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
+                              %>>SDA</option> -->
+                    <option value="Region">EAST</option>
+                    <option value="Region">WEST</option>
+                    <option value="Region">SOUTH</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2"> DSR type</label>
+                  <select name="salesman_type" class="form-control" id="salesman_type" placeholder="salesman_type"
+                    value="">
+                    <option value=""> DSR type </option>
+                    <option value="Awsm">DSR</option>
+                    <option value="Sda">SDA</option>
+                    <option value="Psm">PSM</option>&gt;
+
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="SO" class="mr-sm-2">SO NAME</label>
+                  <input type="text" class="form-control" id="SO" placeholder="SO NAME" name="SO" value="" />
+                </div>
+                <div class="col-3">
+                  <label for="SO" class="mr-sm-2">ASM NAME</label>
+                  <input type="text" class="form-control" id="SO" placeholder="ASM NAME" name="SO" value="" />
+                </div>
+                <div class="col-3">
+                  <label for="fromDate" class="mr-sm-2">FROM</label>
+                  <input type="date" class="form-control" id="fromDate" placeholder="fromDate" name="fromDate"
+                    value="<%=QueryData.fromDate %>" />
+                </div>
+                <div class="col-3">
+                  <label for="toDate" class="mr-sm-2">TO</label>
+                  <input type="date" class="form-control" id="toDate" placeholder="toDate" name="toDate"
+                    value="<%=QueryData.toDate %>" />
+                </div>
+                <div class="col-12 mb-3">
+                  <button type="reset"
+                    class="btn btn-outline-alternate custom-button reset-anchor mr-3 mt-3">Reset</button>
+                  <button type="button" class="btn btn-primary custom-btn btn-lg mt-3" onclick="applyYtdTrendFilter()">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-10 mx-auto">
+            <canvas width="300" height="150" id="acquisitions1"> </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="card mt-3">
+        <div class="card-header-tab card-header-tab-animation card-header">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-12">
+              <h6><b>Tenure wise details</b></h6>
+            </div>
+
+            <div class="col-lg-4 col-12 text-right">
+              <button class="btn-shadow btn btn-primary custom-btn btn-lg" data-toggle="collapse" data-target="#demo">
+                <i class="fas fa-filter mr-2"></i>Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="demo" class="collapse">
+            <form action="">
+              <div class="row">
+                <div class="col-4">
+                  <label for="selectedMonth" class="mr-sm-2">Select Month</label>
+                  <select class="form-control" id="selectedMonth">
+                    <option value="">Choose</option>
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2">Select Region</label>
+                  <select class="form-control" id="selectedRegion">
+                    <option value="">Choose</option>
+                    <option value="Region">Region</option>
+                    <option value="Region">North</option>
+                    <!-- <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
+                              %>>SDA</option> -->
+                    <option value="Region">EAST</option>
+                    <option value="Region">WEST</option>
+                    <option value="Region">SOUTH</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="SO" class="mr-sm-2"> Tenure </label>
+                  <input type="text" class="form-control" id="SO" placeholder="Tenure" name="Tenure" value="" />
+                </div>
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2"> DSR type</label>
+                  <select name="salesman_type" class="form-control" id="salesman_type" placeholder="salesman_type"
+                    value="">
+                    <option value=""> DSR type </option>
+                    <option value="Awsm">DSR</option>
+                    <option value="Sda">SDA</option>
+                    <option value="Psm">PSM</option>&gt;
+
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2"> status </label>
+                  <select name="salesman_type" class="form-control" id="salesman_type" placeholder="status" value="">
+                    <option value="">Choose</option>
+                    <option value="Active"> Active</option>
+                    <option value="Inactive">Inactive</option>
+
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="fromDate" class="mr-sm-2">FROM</label>
+                  <input type="date" class="form-control" id="fromDate" placeholder="fromDate" name="fromDate"
+                    value="<%=QueryData.fromDate %>" />
+                </div>
+                <div class="col-4">
+                  <label for="toDate" class="mr-sm-2">TO</label>
+                  <input type="date" class="form-control" id="toDate" placeholder="toDate" name="toDate"
+                    value="<%=QueryData.toDate %>" />
+                </div>
+                <div class="col-12 mb-3">
+                  <button type="reset"
+                    class="btn btn-outline-alternate custom-button reset-anchor mr-3 mt-3">Reset</button>
+                  <button type="button" class="btn btn-primary custom-btn btn-lg mt-3" onclick="applyYtdTrendFilter()">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-10 mx-auto">
+            <canvas id="acquisitions2" width="400" height="350"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card mt-3">
+        <div class="card-header-tab card-header-tab-animation card-header">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-12">
+              <h6><b>DSR attendance report</b><b> Absent & Present</b></h6>
+            </div>
+            <div class="col-lg-4 col-lg-4 col-12 text-right">
+              <button class="btn-shadow btn btn-primary custom-btn btn-lg" data-toggle="collapse"
+                data-target="#Present">
+                <i class="fas fa-filter mr-2"></i>Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="Present" class="collapse">
+            <form action="">
+              <div class="row">
+                <div class="col-4">
+                  <label for="selectedRegion" class="mr-sm-2">Select Region</label>
+                  <select class="form-control" id="selectedRegion">
+                    <option value="">Choose</option>
+                    <option value="Region">Region</option>
+                    <option value="Region">North</option>
+                    <option value="Region">EAST</option>
+                    <option value="Region">WEST</option>
+                    <option value="Region">SOUTH</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="selectedMonth" class="mr-sm-2">Select Month</label>
+                  <select class="form-control" id="selectedMonth">
+                    <option value="">Choose</option>
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="SO" class="mr-sm-2">SO NAME</label>
+                  <input type="text" class="form-control" id="SO" placeholder="SO NAME" name="SO" value="" />
+                </div>
+                <div class="col-4">
+                  <label for="SO" class="mr-sm-2">ASM NAME</label>
+                  <input type="text" class="form-control" id="SO" placeholder="ASM NAME" name="SO" value="" />
+                </div>
+                <div class="col-4">
+                  <label for="FROM" class="mr-sm-2">FROM</label>
+
+                  <input type="date" class="form-control" id="fromDate" placeholder="fromDate" name="fromDate"
+                    value="<%=QueryData.fromDate %>" />
+                </div>
+                <div class="col-4">
+                  <label for="TO" class="mr-sm-2">TO</label>
+
+                  <input type="date" class="form-control" id="toDate" placeholder="toDate" name="toDate"
+                    value="<%=QueryData.toDate %>" />
+                </div>
+
+                <div class="col-12 mb-3">
+                  <button type="reset"
+                    class="btn btn-outline-alternate custom-button reset-anchor mr-3 mt-3">Reset</button>
+                  <button type="submit" class="btn-shadow btn btn-primary custom-btn btn-lg mt-3">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 mx-auto d-flex justify-content-center">
+            <canvas id="Presentchart" width="200px" height="80px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card mt-3">
+        <div class="card-header-tab card-header-tab-animation card-header">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-12">
+              <h6><b>Absent reasons</b></h6>
+            </div>
+
+            <div class="col-lg-4 col-lg-4 col-12 text-right">
+              <button class="btn-shadow btn btn-primary custom-btn btn-lg" data-toggle="collapse" data-target="#demo1">
+                <i class="fas fa-filter mr-2"></i>Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="demo1" class="collapse">
+            <form action="">
+              <div class="row">
+                <div class="col-6">
+                  <label for="selectedRegion" class="mr-sm-2">Select Region</label>
+                  <select class="form-control" id="selectedRegion">
+                    <option value="">Choose</option>
+                    <option value="Region">Region</option>
+                    <option value="Region">North</option>
+                    <option value="Region">EAST</option>
+                    <option value="Region">WEST</option>
+                    <option value="Region">SOUTH</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="selectedMonth" class="mr-sm-2">Select Month</label>
+                  <select class="form-control" id="selectedMonth">
+                    <option value="">Choose</option>
+                    <option value="january">January</option>
+                    <option value="february">February</option>
+                    <option value="march">March</option>
+                    <option value="april">April</option>
+                    <option value="may">May</option>
+                    <option value="june">June</option>
+                    <option value="july">July</option>
+                    <option value="august">August</option>
+                    <option value="september">September</option>
+                    <option value="october">October</option>
+                    <option value="november">November</option>
+                    <option value="december">December</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="FROM" class="mr-sm-2">FROM</label>
+
+                  <input type="date" class="form-control" id="fromDate" placeholder="fromDate" name="fromDate"
+                    value="<%=QueryData.fromDate %>" />
+                </div>
+                <div class="col-6">
+                  <label for="TO" class="mr-sm-2">TO</label>
+
+                  <input type="date" class="form-control" id="toDate" placeholder="toDate" name="toDate"
+                    value="<%=QueryData.toDate %>" />
+                </div>
+
+                <div class="col-12 mb-3">
+                  <button type="reset"
+                    class="btn btn-outline-alternate custom-button reset-anchor mr-3 mt-3">Reset</button>
+
+                  <button type="submit" class="btn-shadow btn btn-primary custom-btn btn-lg mt-3">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 mx-auto d-flex justify-content-center">
+            <canvas id="acquisitions" width="200px" height="80px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    (async function () {
+      Chart.register(ChartDataLabels);
+      const data = {
+        labels: [
+          "Total face matched",
+          "Total face not matched",
+        ],
+        datasets: [
+          {
+            label: "KYC INFO",
+            data: [
+              "10",
+              "50",
+            ],
+            backgroundColor: [
+              "rgb(255, 99, 132)",
+              "rgb(54, 162, 235)",
+            ],
+            hoverOffset: 4,
+          },
+        ],
+      };
+
+      const ctx = document.getElementById("Presentchart").getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              align: "start",
+              //position: "left",
+              labels: {
+                font: { size: 14 },
+                padding: 10,
+                // color: "red",
+              },
+            },
+            datalabels: {
+              color: "black",
+              font: {
+                weight: "bold",
+              },
+            },
+          },
+        },
+      });
+    })();
+  </script>
+
+  <script>
+    (async function () {
+      Chart.register(ChartDataLabels);
+      const data = {
+        labels: [
+          "Total DSR attendance",
+          "Total face matched",
+          "Total face not matched",
+          "Total out of time",
+        ],
+        datasets: [
+          {
+            label: "KYC INFO",
+            data: [
+              "10",
+              "50",
+              "40",
+              "10",
+            ],
+            backgroundColor: [
+              "rgb(255, 99, 132)",
+              "rgb(54, 162, 235)",
+              "rgb(255, 205, 86)",
+              "rgb(86, 205, 86)",
+            ],
+            hoverOffset: 4,
+          },
+        ],
+      };
+
+      const ctx = document.getElementById("acquisitions").getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              align: "start",
+              //position: "left",
+              labels: {
+                font: { size: 14 },
+                padding: 10,
+                // color: "red",
+              },
+            },
+            datalabels: {
+              color: "black",
+              font: {
+                weight: "bold",
+              },
+            },
+          },
+        },
+      });
+    })();
+  </script>
+
+  <script>
+    (async function () {
+      Chart.register(ChartDataLabels);
+      const data = [
+        { category: "Total KYC", count: 100 },
+        { category: "Total KYC Success", count: 80 },
+        { category: "Total KYC Rejected", count: 10 },
+        { category: "Total KYC Pending", count: 5 },
+        { category: "KYC Not Available", count: 5 },
+      ];
+
+      const ctx = document.getElementById("acquisitions1").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.map((a) => a.category),
+          datasets: [
+            {
+              label: "Counts",
+              data: data.map((row) => row.count),
+              backgroundColor: ["blue", "green", "red", "orange", "gray"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              stacked: true,
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "",
+              font: {
+                size: 16,
+              },
+            },
+            legend: {
+              display: false,
+            },
+            datalabels: {
+              anchor: "end",
+              align: "top",
+              color: "#000",
+              formatter: (value) => {
+                return value;
+              },
+              font: {
+                weight: "bold",
+              },
+            },
+          },
+        },
+      });
+    })();
+  </script>
+  <script>
+    (async function () {
+      const data = [
+        { category: "<1 YEAR", count: 60 },
+        { category: "1-2 YEAR", count: 120 },
+        { category: ">2 YEAR", count: 220 },
+      ];
+      const ctx = document.getElementById("acquisitions2").getContext("2d");
+      Chart.register(ChartDataLabels);
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.map((a) => a.category),
+          datasets: [
+            {
+              label: "value ",
+              data: data.map((a) => a.count),
+              backgroundColor: ["grey", "pink", "orange"],
+              // borderWidth: 1,
+              // borderRadius: 8,
+            },
+          ],
+        },
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            datalabels: {
+              anchor: "end",
+              align: "top",
+              color: "#000",
+              formatter: Math.round,
+              font: {
+                weight: "600",
+                size: 10,
+              },
+            },
+          },
+        },
+      });
+    })();
+  </script>
+  <%- include("../shared/footer"); %>

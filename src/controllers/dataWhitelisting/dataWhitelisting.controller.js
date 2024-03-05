@@ -312,7 +312,7 @@ const uploadData = async (req, res) => {
           salesman_type: removeCommas(element[14]),
           channel: removeCommas(element[15])
         };
-
+        //console.log(excelObject);
         function removeCommas(value) {
           return value.replace(/,/g, '');
         }
@@ -330,6 +330,7 @@ const uploadData = async (req, res) => {
 
           // Check AW exist or not 
           let awInsertResult = await selectAW(excelObject);
+          console.log(awInsertResult.length);
           if (awInsertResult.length == 0) {
             await insertAW(excelObject);
           } else {
@@ -369,6 +370,9 @@ const uploadData = async (req, res) => {
                 selectAuthResult[0].reason = `Awsm Code-: ${selectAuthResult[0].awsm_code} replaced by : ${excelObject.awsm_code} && Awsm Name -: ${awsmInsertResult[0].awsm_name} replaced by : ${excelObject.awsm_name} && Awsm State-: ${awsmInsertResult[0].awsm_state} replaced by : ${excelObject.awsm_state} && Aw Code -: ${awsmInsertResult[0].aw_code} replaced by : ${excelObject.aw_code} && Awsm City-: ${awsmInsertResult[0].awsm_city} replaced by : ${excelObject.awsm_city} && Ase Email -: ${selectAuthResult[0].ase_email} replaced by : ${excelObject.ase_email_id}`;
 
                 selectAuthResult[0].kyc_id = selectKYCResult[0].kyc_id;
+                console.log(excelObject, "excelObject");
+                console.log(selectAuthResult[0], "selectAuthResult");
+
                 await updateAUTHDetailHistory(selectAuthResult[0]);
                 await updateAUTHDetail(excelObject);
               }
@@ -388,10 +392,10 @@ const uploadData = async (req, res) => {
         { label: 'ASE Employee Code', value: 'ase_employee_code' },
         { label: 'ASE State', value: 'ase_state' },
         { label: 'ASE City', value: 'ase_city' },
-        { label: 'AW Name', value: 'aw_name' },
-        { label: 'AW Code', value: 'aw_code' },
-        { label: 'AW State', value: 'aw_state' },
-        { label: 'AW City', value: 'aw_city' },
+        { label: 'DISTRIBUTOR Name', value: 'aw_name' },
+        { label: 'DISTRIBUTOR Code', value: 'aw_code' },
+        { label: 'DISTRIBUTOR State', value: 'aw_state' },
+        { label: 'DISTRIBUTOR City', value: 'city' },
         { label: 'AWSM Name', value: 'awsm_name' },
         { label: 'AWSM Code', value: 'awsm_code' },
         { label: 'AWSM State', value: 'awsm_state' },
@@ -404,7 +408,7 @@ const uploadData = async (req, res) => {
       const dynamicBasePath = '../../../src/public/upload_files/';
       const directoryPath = path.join(__dirname, dynamicBasePath);
       const filePath = path.join(directoryPath, csvFileName);
-
+      // console.log(csv);
       fs.writeFileSync(filePath, csv);
       let imageHostUrl = req.protocol + '://' + req.get('host') + '/public/upload_files/' + csvFileName;
 
@@ -441,19 +445,19 @@ const uploadData = async (req, res) => {
 const downloadSample = async (req, res) => {
   try {
     const columns = [
-      'ASE Email id',
-      'ASE Name',
-      'ASE Employee Code',
-      'ASE State',
-      'ASE City',
-      'AW Name',
-      'AW Code',
-      'AW State',
-      'AW City',
-      'AWSM Name',
-      'AWSM Code',
-      'AWSM State',
-      'AWSM City',
+      'SO Email id',
+      'SO Name',
+      'SO Employee Code',
+      'SO State',
+      'SO City',
+      'DISTRIBUTOR Name',
+      'DISTRIBUTOR Code',
+      'DISTRIBUTOR State',
+      'DISTRIBUTOR City',
+      'DSR Name',
+      'DSR Code',
+      'DSR State',
+      'DSR City',
       'Region',
       'Salesman Type',
       'Channel'
@@ -517,7 +521,7 @@ const UpdateStatus = async (req, res) => {
 }
 
 const exportWhitelist = async (req, res) => {
-  let whitelistResult = await exportWhitelisting(req.query);
+  let whitelistResult = await selectDataWhitelisting(req.query);
 
   res.send(whitelistResult);
 }

@@ -1,4 +1,4 @@
-const { selectKYCStatus, getTotalCount, exportKYCStatus } = require("../../models/kyc-status.model");
+const { selectKYCStatus, getTotalCount, exportKYCStatus } = require("../../models/retailerkycstatus.model");
 
 
 const retailerkycstatusView = async (req, res, next) => {

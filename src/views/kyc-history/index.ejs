@@ -9,7 +9,7 @@
                     </i>
                 </div> -->
                 <div>
-                    <b> KYC History</b>
+                    <b> DSR KYC History</b>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                                         <img src="./images/off.png" alt="">
                                         DISTRIBUTOR KYC
                                     </a>
-                                    <a class="mt-2" href="./authentication">
+                                    <a class="mt-2" href="./dsr_attendance">
                                         <img src="./images/off.png" alt="">
                                         DSR ATTENDANCE
                                     </a>
@@ -64,10 +64,10 @@
                                     </a>
                                     <a class="mt-2" href="./kyc-history">
                                         <img src="./images/on.png" alt="">
-                                        DSR History</a>
+                                        DSR KYC History</a>
                                     <a class="mt-2" href="./retailer-history">
                                         <img src="./images/off.png" alt="">
-                                        RETAILER History
+                                        RETAILER KYC History
                                     </a>
                                     <a class="mt-2" href="./master-data">
                                         <img src="./images/off.png" alt="">
@@ -146,14 +146,16 @@
                                             <select name="salesman_type" class="form-control" id="salesman_type"
                                                 placeholder="salesman_type" value="<%=QueryData.salesman_type %>">
 
-                                                <option value=""> DSR Type </option>
-                                                <option value="Awsm" <%=QueryData.salesman_type==='Awsm' ? 'selected'
-                                                    : '' %>>DSR</option>
-                                                <option value="Sda" <%=QueryData.salesman_type==='Sda' ? 'selected' : ''
-                                                    %>>SDA</option>
-                                                <option value="Psm" <%=QueryData.salesman_type==='Psm' ? 'selected' : ''
-                                                    %>>PSM</option>>
+                                                <option value=""> dsr type </option>
+                                                <option value="PRE_SELLER" <%=QueryData.salesman_type==='PRE_SELLER'
+                                                    ? 'selected' : '' %>>PRE_SELLER</option>
+                                                <option value="ISR" <%=QueryData.salesman_type==='ISR' ? 'selected' : ''
+                                                    %>>ISR</option>
+                                                <option value="PROMOTER" <%=QueryData.salesman_type==='PROMOTER'
+                                                    ? 'selected' : '' %>>PROMOTER</option>>
 
+                                                <option value="MERCHANDISER" <%=QueryData.salesman_type==='MERCHANDISER'
+                                                    ? 'selected' : '' %>>MERCHANDISER</option>>
                                             </select>
 
                                         </div>
@@ -417,7 +419,10 @@
                                             class="header-contents-new">DSR ID</li>
                                         <li style="padding: 17px 18px 18px 17px;width: 162px;"
                                             class="header-contents-new">DSR NAME</li>
-
+                                        <li style="padding: 17px 20px 17px 17px;width: 162px;"
+                                            class="header-contents-new">DSR EMAIL</li>
+                                        <li style="padding: 17px 20px 17px 17px;width: 162px;"
+                                            class="header-contents-new">DSR TYPE</li>
 
                                         <li style="width: 162px;padding: 17px 18px 18px 17px;"
                                             class="header-contents-new">Distributor ID</li>
@@ -433,7 +438,11 @@
                                         <li style="width: 162px;padding: 17px 18px 18px 17px;"
                                             class="header-contents-new">ADDRESS</li>
                                         <li style="width: 162px;padding: 17px 26px 26px 17px;"
-                                            class="header-contents-new">SALESMAN PHOTO</li>
+                                            class="header-contents-new">DSR PHOTO</li>
+                                        <li style="width: 162px;padding: 17px 28px 28px 17px;"
+                                            class="header-contents-new">DSR PAN PHOTO</li>
+                                        <li style="width: 162px;padding: 18px 20px 14px 18px;"
+                                            class="header-contents-new">DSR PAN Card No.</li>
                                         <li style="padding: 17px 18px 18px 17px;width: 162px;"
                                             class="header-contents-new">BANK A/C NO.</li>
                                         <li style="width: 162px;padding: 17px 20px 20px 17px;"
@@ -473,6 +482,8 @@
                                         <li style="padding: 17px 18px 18px 17px;width: 162px;"
                                             class="header-contents-new">NEW MODIFICATION DATE
                                         </li>
+                                        <li style="padding: 17px 17px 17px 17px; width: 162px;"
+                                            class="header-contents-new">Date of Joining</li>
                                     </ul>
 
                                 </div>
@@ -512,14 +523,24 @@
                                                     class="header-contents-new"><input type="text" name=""
                                                         class="form-control" value="<%= data.awsm_name %>" readonly="">
                                                 </li>
+                                                <li style="width: 162px;padding: 7px 16px 7px 16px"
+                                                    class="header-contents-new"><input type="text" name="aw_code"
+                                                        class="form-control" value="<%= kyc.awEmail %>" readonly="">
+                                                </li>
 
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
-                                                    class="header-contents-new"><input type="text" name="AWSM"
-                                                        class="form-control" value="<%= data.aw_code %>" readonly="">
+                                                    class="header-contents-new"><input type="text" name="SellerType"
+                                                        class="form-control" value="<%= data.SellerType %>" readonly="">
                                                 </li>
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
+                                                    class="header-contents-new"><input type="text" name="AWSM"
+                                                        class="form-control" value="<%= data.distributorcode %>"
+                                                        readonly="">
+                                                </li>
+
+                                                <li style="width: 162px;padding: 7px 16px 7px 16px"
                                                     class="header-contents-new"><input type="text" name=""
-                                                        class="form-control" value="<%= data.aw_name %>" readonly="">
+                                                        class="form-control" value="<%= data.name %>" readonly="">
                                                 </li>
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
                                                     class="header-contents-new"><input type="text" name=""
@@ -549,9 +570,27 @@
                                                     </div>
                                                 </li>
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
+                                                    class="header-contents-new tabel-img">
+                                                    <div class="tabel-img">
+                                                        <a target="_blank">
+                                                            <img width="100" height="50" src="<%= data.pancard_image %>"
+                                                                onclick="getImage(this);">
+                                                            <input type="hidden" value="<%= data.pancard_image %>"
+                                                                name="pancard_image">
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+                                                <li style="width: 162px;padding: 7px 16px 7px 16px"
+                                                    class="header-contents-new"><input type="text" name=""
+                                                        class="form-control" value="<%= data.pancard_no %>" readonly="">
+                                                </li>
+
+                                                <li style="width: 162px;padding: 7px 16px 7px 16px"
                                                     class="header-contents-new"><input type="text" name=""
                                                         class="form-control" value="<%= data.bank_account_no %>"
-                                                        readonly=""></li>
+                                                        readonly="">
+                                                </li>
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
                                                     class="header-contents-new"><input type="text" name=""
                                                         class="form-control" value="<%= data.ifsc_code %>" readonly="">
@@ -563,8 +602,9 @@
                                                         <input type="hidden" value="<%= data.bank_cheque %>"
                                                             name="bank_cheque">
                                                     </a></li>
+
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
-                                                    class="header-contents-new"><input type="text" name=""
+                                                    class="header-contents-new"><input type="text" name="bank_name"
                                                         class="form-control" value="<%= data.bank_name %>" readonly="">
                                                 </li>
                                                 <li style="width: 162px;padding: 7px 16px 7px 16px"
@@ -655,11 +695,17 @@
                                                         value="<%= (data.update_timestamp)? data.update_timestamp.toLocaleDateString('en-IN'): '' %>"
                                                         readonly="">
                                                 </li>
-                                                <li style="width: 162px;padding: 7px 16px 7px 16px"
+                                                <li style="width: 162px;padding: 7px 16px 20px 16px"
                                                     class="header-contents-new"><input type="text" name=""
                                                         class="form-control"
                                                         value="<%= (data.update_old_modification_date)? data.update_old_modification_date.toLocaleDateString('en-IN'): '' %>"
                                                         readonly="">
+                                                </li>
+                                                <li style="width: 162px;padding: 7px 16px 8px 16px"
+                                                    class="header-contents-new">
+                                                    <input type="text" name="JoiningDate" class="form-control"
+                                                        value="<%= data.JoiningDate ? new Date(data.JoiningDate).toLocaleDateString('en-IN') : '' %>"
+                                                        readonly>
                                                 </li>
                                             </ul>
 
@@ -710,7 +756,7 @@
     <script>
         function fnExcelReport(file, mobile_no, awsm_code, awsm_name, salesman_type, aw_code, aw_name, ase_code, ase_name, fromDate, toDate, awsm_state, awsm_city) {
 
-            fetch(`/kyc-history/export?mobile_no=${mobile_no}&awsm_code=${awsm_code}&awsm_name=${awsm_name}&salesman_type=${salesman_type}&aw_code=${aw_code}&aw_name=${aw_name}&ase_code=${ase_code}&ase_name=${ase_name}&fromDate=${fromDate}&toDate=${toDate}&awsm_state=${awsm_state}&awsm_city=${awsm_city}`)
+            fetch(`/kyc-history/export?mobile_no=${mobile_no}&awsm_code=${awsm_code}&awsm_name=${awsm_name}&salesman_type=${salesman_type}&aw_code=${aw_code}&name=${aw_name}&ase_code=${ase_code}&ase_name=${ase_name}&fromDate=${fromDate}&toDate=${toDate}&awsm_state=${awsm_state}&awsm_city=${awsm_city}`)
                 .then((res) => res.json())
                 .then((data) => {
                     data.forEach((item) => {
@@ -760,30 +806,21 @@
             const headers = [
                 "CREATE DATE",
                 "KYC TYPE",
-                "ASE EMAIL ID",
-                "ASE CODE",
-                "ASE NAME",
-                "SALESMAN ID",
-                "SALESMAN NAME",
-                "SALESMAN TYPE",
-                "VIKAS ID",
-                "HQ LOCATION",
-                "DISTRICT",
-                "TEHSIL/SUB DISTRICT",
-                "HQ TOWN",
-                "HQ TOWN CENSUS CODE",
-                "MV",
-                "AW1 ID",
-                "AW1 NAME",
-                "AW2 ID",
-                "AW3 ID",
-                "AW4 ID",
-                "AW5 ID",
+                "SO EMAIL ID",
+                "SO CODE",
+                "SO NAME",
+                "DSR ID",
+                "DSR NAME",
+                "DSR EMAIL",
+                "DISTRIUTOR ID",
+                "DISTRIUTOR NAME",
                 "BENEFICIARY NAME",
                 "STATE NAME",
                 "CITY NAME",
                 "ADDRESS",
-                "SALESMAN PHOTO",
+                "DSR PHOTO",
+                "DSR PAN PHOTO",
+                "DSR PAN CARD No.",
                 "BANK A/C NO.",
                 "IFSC CODE",
                 "CHEQUE IMAGE",
@@ -795,7 +832,7 @@
                 "VALIDATION CALLING REMARK",
                 "KYC STATUS",
                 "KYC REJECTION REASON",
-                "WIP REMARKS",
+                "REMARKS",
                 "VERIFICATION DATE",
                 "GENDER",
                 "DOB",
@@ -805,7 +842,7 @@
             ]
 
             function dateFun(item) {
-                console.log(item);
+                //   console.log(item);
                 switch (item.kyc_type) {
                     case 'FRESH':
                         return item.approved_on;
@@ -819,34 +856,28 @@
                         return null;
                 }
             }
-            console.log(data[0]);
+
             const flattenData = data.map(item => ({
                 "CREATE DATE": item.created_on,
                 "KYC TYPE": item.kyc_type,
-                "ASE EMAIL ID": item.ase_email,
-                "ASE CODE": item.ase_employee_code,
-                "ASE NAME": item.ase_name,
-                "SALESMAN ID": item.awsm_code,
-                "SALESMAN NAME": item.awsm_name,
-                "SALESMAN TYPE": item.salesman_type,
-                "VIKAS ID": "",
-                "HQ LOCATION": "",
-                "DISTRICT": "",
-                "TEHSIL/SUB DISTRICT": "",
-                "HQ TOWN": "",
-                "HQ TOWN CENSUS CODE": "",
-                "MV": "",
-                "AW1 ID": item.aw_code,
-                "AW1 NAME": item.aw_name,
-                "AW2 ID": " ",
-                "AW3 ID": " ",
-                "AW4 ID": " ",
-                "AW5 ID": " ",
+                "SO EMAIL ID": item.ase_email,
+                "SO CODE": item.ase_employee_code,
+                "SO NAME": item.ase_name,
+                "DSR ID": item.awsm_code,
+                "DSR NAME": item.awsm_name,
+                "DSR EMAIL": 'ss',
+                "DISTRIUTOR ID": item.aw_code,
+                "DISTRIUTOR NAME": item.name,
+
                 "BENEFICIARY NAME": item.beneficiary_name,
                 "STATE NAME": item.awsm_state,
                 "CITY NAME": item.awsm_city,
                 "ADDRESS": item.address,
-                "SALESMAN PHOTO": item.photo,
+
+                "DSR PHOTO": item.photo,
+                "DSR PAN PHOTO": item.pancard_image,
+                "DSR PAN CARD No.": item.pancard_no,
+
                 "BANK A/C NO.": item.bank_account_no,
                 "IFSC CODE": item.ifsc_code,
                 "CHEQUE IMAGE": item.bank_cheque,

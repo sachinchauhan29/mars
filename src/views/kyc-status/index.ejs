@@ -48,14 +48,14 @@
                                             RETAILER KYC
                                         </a>
                                         <!-- <a class="mt-2" href="./retailer-edit-kyc">
-                                        <img src="./images/off.png" alt="">
-                                        RETAILER EDIT KYC
-                                    </a> -->
+                                            <img src="./images/off.png" alt="">
+                                            RETAILER EDIT KYC
+                                        </a> -->
                                         <a class="mt-2" href="./distributor">
                                             <img src="./images/off.png" alt="">
                                             DISTRIBUTOR KYC
                                         </a>
-                                        <a class="mt-2" href="./authentication">
+                                        <a class="mt-2" href="./dsr_attendance">
                                             <img src="./images/off.png" alt="">
                                             DSR ATTENDANCE
                                         </a>
@@ -65,10 +65,10 @@
                                         </a>
                                         <a class="mt-2" href="./kyc-history">
                                             <img src="./images/off.png" alt="">
-                                            DSR History</a>
+                                            DSR KYC History</a>
                                         <a class="mt-2" href="./retailer-history">
                                             <img src="./images/off.png" alt="">
-                                            RETAILER History
+                                            RETAILER KYC History
                                         </a>
                                         <a class="mt-2" href="./master-data">
                                             <img src="./images/off.png" alt="">
@@ -102,7 +102,7 @@
                                 <form action="./kyc-status">
                                     <div class="row">
 
-                                        <div class="col-2">
+                                        <div class="col-3">
 
                                             <label for="salesman_id" class="mr-sm-2">DSR ID</label>
 
@@ -110,7 +110,7 @@
                                                 name="salesman_id" value="<%=QueryData.salesman_id %>">
 
                                         </div>
-                                        <div class="col-2">
+                                        <!-- <div class="col-2">
 
                                             <div class="ms-auto">
 
@@ -131,8 +131,8 @@
 
                                             </div>
 
-                                        </div>
-                                        <div class="col-2">
+                                        </div>-->
+                                        <div class="col-3">
                                             <div class="ms-auto">
                                                 <label for="Month">Month </label>
                                                 <select name="month" class="form-control" id="Month">
@@ -170,7 +170,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <div class="ms-auto">
                                                 <label for="Year">Year </label>
                                                 <select name="year" class="form-control" id="Year">
@@ -187,7 +187,7 @@
                                         </div>
 
 
-                                        <div class="col-2">
+                                        <div class="col-3">
 
                                             <div class="ms-auto">
 
@@ -366,7 +366,6 @@
                                             <th class="tabel-width">DSR CODE</th>
                                             <th class="tabel-width">DSR NAME</th>
                                             <th class="tabel-width">DSR TYPE</th>
-                                            <th class="tabel-width">VIKAS ID</th>
                                             <th class="tabel-width">KYC DATE</th>
                                             <th class="tabel-width">VERIFICATION DATE</th>
                                             <th class="tabel-width">ATTENDANCE DATE</th>
@@ -391,9 +390,6 @@
                                                 </td>
                                                 <td>
                                                     <%= data.salesman_type%>
-                                                </td>
-                                                <td>
-                                                    <%= data.vikas_id ? data.vikas_id: '' %>
                                                 </td>
                                                 <td>
                                                     <%= data.created_on.toLocaleDateString('en-IN') %>
@@ -477,26 +473,41 @@
 
                                     </div>
                                     <div class=" mt-3 px-xl-2 col-12">
-                                        <div>
+                                        <div class="dis-grid">
                                             <a class="mt-2" href="./kyc">
                                                 <img src="./images/off.png" alt="">
-                                                Kyc
+                                                DSR Kyc
                                             </a>
                                             <a class="mt-2" href="./edit-kyc-data">
                                                 <img src="./images/off.png" alt="">
-                                                EDIT KYC DATA
+                                                DSR EDIT KYC
                                             </a>
-                                            <a class="mt-2" href="./authentication">
+                                            <a class="mt-2" href="./retailer">
                                                 <img src="./images/off.png" alt="">
-                                                AUTHENTICATION
+                                                RETAILER KYC
+                                            </a>
+                                            <!-- <a class="mt-2" href="./retailer-edit-kyc">
+                                            <img src="./images/off.png" alt="">
+                                            RETAILER EDIT KYC
+                                        </a> -->
+                                            <a class="mt-2" href="./distributor">
+                                                <img src="./images/off.png" alt="">
+                                                DISTRIBUTOR KYC
+                                            </a>
+                                            <a class="mt-2" href="./dsr_attendance">
+                                                <img src="./images/off.png" alt="">
+                                                DSR ATTENDANCE
                                             </a>
                                             <a class="mt-2" href="./payout">
                                                 <img src="./images/off.png" alt="">
-                                                PAYOUT
+                                                DSR PAYOUT
                                             </a>
                                             <a class="mt-2" href="./kyc-history">
                                                 <img src="./images/off.png" alt="">
-                                                KYC History
+                                                DSR History</a>
+                                            <a class="mt-2" href="./retailer-history">
+                                                <img src="./images/off.png" alt="">
+                                                RETAILER History
                                             </a>
                                             <a class="mt-2" href="./master-data">
                                                 <img src="./images/off.png" alt="">
@@ -506,26 +517,37 @@
                                                 <img src="./images/on.png" alt="">
                                                 KYC STATUS
                                             </a>
-                                            <a class="mt-2" href="./awsm-updation">
+                                            <!-- <a class="mt-2" href="./awsm-updation">
                                                 <img src="./images/off.png" alt="">
                                                 AWSM UPDATION
-                                            </a>
+                                            </a> -->
+
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="card-body">
+                                <div class="m-2">
+                                    <a class="mt-2" href="./kyc-status">
+                                        <img src="./images/on.png" alt="">
+                                        DSR KYC STATUS
+                                    </a>
+                                    <a class="mt-2" href="./retailerkycstatus">
+                                        <img src="./images/off.png" alt="">
+                                        RETAILER KYC STATUS
+                                    </a>
+                                </div>
                                 <div id="demo" class="collapse">
                                     <form action="./kyc-status">
                                         <div class="row">
 
                                             <div class="col-2">
 
-                                                <label for="salesman_id" class="mr-sm-2">SALESMAN ID</label>
+                                                <label for="salesman_id" class="mr-sm-2">DSR ID</label>
 
-                                                <input type="text" class="form-control" id="salesman_id"
-                                                    placeholder="salesman_id" name="salesman_id"
+                                                <input type="text" class="form-control" id="awsm_code"
+                                                    placeholder="dsr_id" name="salesman_id"
                                                     value="<%=QueryData.salesman_id %>">
 
                                             </div>
@@ -533,15 +555,15 @@
 
                                                 <div class="ms-auto">
 
-                                                    <label for="salesman_type">SELECT SALESMAN TYPE</label>
+                                                    <label for="salesman_type">SELECT KYC TYPE</label>
 
                                                     <select name="salesman_type" class="form-control" id="salesman_type"
                                                         placeholder="salesman_type"
                                                         value="<%=QueryData.salesman_type %>">
 
-                                                        <option value=""> Salesman Type </option>
+                                                        <option value=""> KYC Type </option>
                                                         <option value="Awsm" <%=QueryData.salesman_type==='Awsm'
-                                                            ? 'selected' : '' %>>AWSM</option>
+                                                            ? 'selected' : '' %>>DSR</option>
                                                         <option value="Sda" <%=QueryData.salesman_type==='Sda'
                                                             ? 'selected' : '' %>>SDA</option>
                                                         <option value="Psm" <%=QueryData.salesman_type==='Psm'
@@ -568,7 +590,8 @@
                                                             : '' %>
                                                             >April</option>
                                                         <option value="May" <%=QueryData.month==='May' ? 'selected' : ''
-                                                            %>>May
+                                                            %>
+                                                            >May
                                                         </option>
                                                         <option value="June" <%=QueryData.month==='June' ? 'selected'
                                                             : '' %>
@@ -595,18 +618,16 @@
                                                     <label for="Year">Year </label>
                                                     <select name="year" class="form-control" id="Year">
                                                         <option value="">Select Year</option>
-                                                        <option value="2023" <%=QueryData.year==='2023' ? 'selected'
+                                                        <option value="2024" <%=QueryData.year==='2024' ? 'selected'
+                                                            : '' %>
+                                                            >2024</option>
+                                                        <option value="2022" <%=QueryData.year==='2023' ? 'selected'
                                                             : '' %>
                                                             >2023</option>
                                                         <option value="2022" <%=QueryData.year==='2022' ? 'selected'
                                                             : '' %>
                                                             >2022</option>
-                                                        <option value="2021" <%=QueryData.year==='2021' ? 'selected'
-                                                            : '' %>
-                                                            >2021</option>
-                                                        <option value="2020" <%=QueryData.year==='2020' ? 'selected'
-                                                            : '' %>
-                                                            >2020</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -618,7 +639,7 @@
 
                                                     <label for="State">State </label>
 
-                                                    <select name="state" class="form-control" id="State"
+                                                    <select name="state" class="form-control" id="awsm_state"
                                                         value="<%=QueryData.state %>">
 
                                                         <option value="">Select State</option>
@@ -643,11 +664,11 @@
                                                             >Bihar</option>
 
                                                         <option value="Chhattisgarh" <%=QueryData.state==='Chhattisgarh'
-                                                            ? 'selected' : '' %>
-                                                            >Chhattisgarh</option>
+                                                            ? 'selected' : '' %>>Chhattisgarh</option>
 
                                                         <option value="Goa" <%=QueryData.state==='Goa' ? 'selected' : ''
-                                                            %>>Goa
+                                                            %>
+                                                            >Goa
                                                         </option>
 
                                                         <option value="Gujarat" <%=QueryData.state==='Gujarat'
@@ -664,7 +685,8 @@
 
                                                         <option value="Jammu and Kashmir"
                                                             <%=QueryData.state==='Jammu and Kashmir' ? 'selected' : ''
-                                                            %>>Jammu
+                                                            %>
+                                                            >Jammu
                                                             and Kashmir
 
                                                         </option>
@@ -683,8 +705,7 @@
                                                             >Madhya Pradesh</option>
 
                                                         <option value="Maharashtra" <%=QueryData.state==='Maharashtra'
-                                                            ? 'selected' : '' %>
-                                                            >Maharashtra</option>
+                                                            ? 'selected' : '' %>>Maharashtra</option>
 
                                                         <option value="Manipur" <%=QueryData.state==='Manipur'
                                                             ? 'selected' : '' %>>Manipur</option>
@@ -720,20 +741,19 @@
                                                             ? 'selected' : '' %>>Tripura</option>
 
                                                         <option value="Uttaranchal" <%=QueryData.state==='Uttaranchal'
-                                                            ? 'selected' : '' %>
-                                                            >Uttaranchal</option>
+                                                            ? 'selected' : '' %>>Uttaranchal</option>
 
                                                         <option value="Uttar Pradesh"
                                                             <%=QueryData.state==='Uttar Pradesh' ? 'selected' : '' %>
                                                             >Uttar Pradesh</option>
 
                                                         <option value="West Bengal" <%=QueryData.state==='West Bengal'
-                                                            ? 'selected' : '' %>
-                                                            >West Bengal</option>
+                                                            ? 'selected' : '' %>>West Bengal</option>
 
                                                         <option value="UNION Territories"
                                                             <%=QueryData.state==='UNION Territories' ? 'selected' : ''
-                                                            %>>UNION
+                                                            %>
+                                                            >UNION
                                                             Territories
 
                                                         </option>
@@ -766,8 +786,7 @@
                                                             ? 'selected' : '' %>>Lakshadeep</option>
 
                                                         <option value="Pondicherry" <%=QueryData.state==='Pondicherry'
-                                                            ? 'selected' : '' %>
-                                                            >Pondicherry</option>
+                                                            ? 'selected' : '' %>>Pondicherry</option>
 
                                                     </select>
                                                 </div>
@@ -794,13 +813,12 @@
 
                                             <tr>
                                                 <th class="tabel-width">MONTH</th>
-                                                <th class="tabel-width">SALESMAN CODE</th>
-                                                <th class="tabel-width">SALESMAN NAME</th>
-                                                <th class="tabel-width">SALESMAN TYPE</th>
-                                                <th class="tabel-width">VIKAS ID</th>
+                                                <th class="tabel-width">DSR CODE</th>
+                                                <th class="tabel-width">DSR NAME</th>
+                                                <th class="tabel-width">DSR TYPE</th>
                                                 <th class="tabel-width">KYC DATE</th>
                                                 <th class="tabel-width">VERIFICATION DATE</th>
-                                                <th class="tabel-width">AUTHENTICATION DATE</th>
+                                                <th class="tabel-width">ATTENDANCE DATE</th>
                                                 <th class="tabel-width">STATUS</th>
                                                 <th class="tabel-width">MODIFIED DATE</th>
                                                 <th class="tabel-width">CHANNEL TYPE</th>
@@ -824,9 +842,6 @@
                                                         <%= data.salesman_type%>
                                                     </td>
                                                     <td>
-                                                        <%= data.vikas_id ? data.vikas_id: '' %>
-                                                    </td>
-                                                    <td>
                                                         <%= data.created_on.toLocaleDateString('en-IN') %>
                                                     </td>
                                                     <td>
@@ -836,8 +851,8 @@
                                                                 <% } else if (data.kyc_type==='RE-KYC-Request' &&
                                                                     data.status==='SUCCESS' ) { %>
                                                                     <%= (data.replace_kyc_edit_on)?
-                                                                        data.replace_kyc_edit_on.toLocaleDateString('en-IN'): ''
-                                                                        %>
+                                                                        data.replace_kyc_edit_on.toLocaleDateString('en-IN')
+                                                                        : '' %>
                                                                         <% } else if (data.kyc_type==='Edit-KYC-Request'
                                                                             && data.status==='SUCCESS' ) { %>
                                                                             <%= data.approved_kyc_edit_on ?
@@ -851,6 +866,10 @@
                                                     <td>
                                                         <%= data.status%>
                                                     </td>
+                                                    <td>
+                                                        <%= data.kyc_update_date?
+                                                            data.kyc_update_date.toLocaleDateString('en-IN'):'' %>
+                                                    </td>
                                                     <td data-order="1000">
                                                         <%= data.channel%>
                                                     </td>
@@ -859,6 +878,7 @@
                                         </tbody>
 
                                     </table>
+
                                     <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
                                         <a href="/kyc-status?page=<%= currentPage - 1 %>"
                                             class="paginate_button previous <%= startPage === 1 ? 'disabled' : '' %>"
@@ -876,6 +896,7 @@
                                             class="paginate_button next <%= endPage === totalRows ? 'disabled' : '' %>"
                                             aria-controls="example" id="example_next">Next</a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -941,10 +962,10 @@
 
                         const headers = [
                             "MONTH",
-                            "SALESMAN CODE",
-                            "SALESMAN NAME",
-                            "SALESMAN TYPE",
-                            "VIKAS ID",
+                            "DSR CODE",
+                            "DSR NAME",
+                            "DSR TYPE",
+
                             "KYC DATE",
                             "VERIFICATION DATE",
                             "AUTHENTICATION DATE",
@@ -956,10 +977,9 @@
 
                         const flattenData = data.map(item => ({
                             "MONTH": item.month_name,
-                            "SALESMAN CODE": item.awsm_code,
-                            "SALESMAN NAME": item.awsm_name,
-                            "SALESMAN TYPE": item.salesman_type,
-                            "VIKAS ID": " ",
+                            "DSR CODE": item.awsm_code,
+                            "DSR NAME": item.awsm_name,
+                            "DSR TYPE": item.salesman_type,
                             "KYC DATE": item.insert_timestamp,
                             "VERIFICATION DATE": item.approved_on,
                             "AUTHENTICATION DATE": "",

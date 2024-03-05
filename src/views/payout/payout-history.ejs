@@ -40,8 +40,9 @@
                                 </tr>
                             </thead>
 
-                            <% uploadDataArray.forEach((data)=> { %>
-                                <tbody>
+
+                            <tbody>
+                                <% uploadDataArray.forEach((data)=> { %>
                                     <tr>
                                         <td>
                                             <% const originalDate=new Date(data.insert_datetime); %>
@@ -67,8 +68,9 @@
                                                 download>Download</a>
                                         </td>
                                     </tr>
-                                </tbody>
-                                <% }); %>
+                                    <% }); %>
+                            </tbody>
+
 
 
                         </table>
@@ -79,12 +81,12 @@
     </div>
 
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             var table = document.querySelector('#example');
             var dataTable = new DataTable(table, {
 
             });
         });
-    </script>
+    </script> -->
     <%- include("../shared/footer"); %>
